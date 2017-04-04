@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NerdBook:Profilo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luigi Serreli">
+        <meta name="keywords" content="Book">
+    </head>
+    <body>
+         <header>
+            <!-- INSERISCI HEADER -->
+        </header>
+        <nav>
+                <ol>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="descrizione.html">Descrizione</a></li>
+                </ol>
+        </nav>
+        <div id="formidentita">
+            <form method="post" action="invia_dati.java">
+                <div id="name"><label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" />
+                </div>
+                <div id="surname"><label for="cognome">Cognome:</label>
+                <input type="text" id="cognome" name="cognome" />
+                </div>
+                <div id="loadimg">
+                <label for="imag">link imgprofilo</label>
+                <input type="url" id="imag" name="link" />
+                </div>
+                <div id="presentation"><label for="frase_p">Frase:</label>
+                <input type="text" id="frase_p" name="presentazione" />
+                </div>
+                <div id="data">
+                <label for="birth">Data:</label>
+                <input type="text" id="birth" name="datanascita" />
+                </div>
+                <div id="insertpass">
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" name="password" />
+                
+                <label for="cpwd">Conferma:</label>
+                <input type="password" id="cpwd" name="confpassword" />
+                </div>
+                <div id="send">
+                <button type="submit">Invia</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
