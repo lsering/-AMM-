@@ -35,6 +35,7 @@ h4{
     font-weight: bold;
     font-size: 15px;
     color: #4E5964;
+    margin-top:0px;
 }
 a:link{
     text-decoration: none;
@@ -46,6 +47,9 @@ a:visited{
 }
 a:hover{
    font-weight: bold; 
+}
+p{
+    padding-left:4px;
 }
 
 nav li{
@@ -67,12 +71,19 @@ nav li.active{
  padding-left:10px;  
  border-bottom: 2px solid white; 
 }
-
+.nameanddate{
+    position: relative;
+    bottom: 80px;
+}
+.nameanddate .icon:before{
+    content: url(img/iconauser.png);
+}
 #favorite .icon:before{
     content: url(img/iconauser.png);
     position:relative;
     top:4px;
 }
+
 #groups .icon:before{
     content:url(img/icongrops.png);
     position:relative;
@@ -134,12 +145,8 @@ nav li.active{
     
 }
 .profile div{
-    display: inline-block;
+    display: inline-flex;
     padding-top:5px;
-}
-.nameanddate{
-    position: relative;
-    bottom:80px;
 }
 #desc_content{
      background-color: #e9e9fc;
@@ -149,6 +156,9 @@ nav li.active{
 }
 #desc_content h2{
     margin-top: 0px;
+}
+.datepost{
+    padding-left:5px;
 }
 /*SE LA LARGHEZZA DELLA PAGINA E' MAGGIORE O UGUALE A 1024px:*/
 @media only screen and (max-width:1024px) and (min-width:480px) /*+++++++++++++++CAMBIARE IN 1024++++++++++*/
