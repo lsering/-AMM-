@@ -1,0 +1,196 @@
+body{
+    background-color: #BAD6F0;
+    font:16px/24px "Open Sans", Arial, sans-serif;
+}
+#navtitle{
+    font-weight: bold;
+    font-size: 30px;
+    color: #4E5964;
+    position:relative;
+    top:15px;
+    left:30px;
+}
+#divBody{
+    display: block; 
+    width:606px; /*Spessore bordi*/
+    margin-left:auto;
+    margin-right:auto;
+}
+h1{
+    font-weight: bold;
+    font-size: 30px;
+    color: #4E5964;
+}
+h2{
+   font-weight: bold;
+    font-size: 22px;
+    color: #4E5964; 
+}
+h3{
+    font-weight: bold;
+    font-size: 20px;
+    color: #4E5964;
+}
+h4{
+    font-weight: bold;
+    font-size: 15px;
+    color: #4E5964;
+}
+a:link{
+    text-decoration: none;
+    color:#4E5964;
+}
+a:visited{
+     text-decoration: none;
+     color:#4E5964;
+}
+a:hover{
+   font-weight: bold; 
+}
+
+nav li{
+    display: inline;
+    font-size:15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 2px solid #6B7B8A;
+}
+nav li:last-child{
+    border-right:none;
+}
+nav li.active{
+    font-weight: bold;
+}
+
+#favorite
+{
+ padding-left:10px;  
+ border-bottom: 2px solid white; 
+}
+
+#favorite .icon:before{
+    content: url(img/iconauser.png);
+    position:relative;
+    top:4px;
+}
+#groups .icon:before{
+    content:url(img/icongrops.png);
+    position:relative;
+    top:4px;
+}
+#groups
+{
+   padding-left:10px;  
+ border-bottom: 2px solid white;  
+}
+#favorite li, #groups li{
+    list-style-type: none;
+}
+#groups ol, #favorite ol{
+    padding:0px;
+}
+ #sidebar1
+{
+    min-height: 300px;
+    width:198px;
+    float:left;
+    border-top:2px solid white;  
+    border-left:2px solid white;
+}
+#content{
+    min-height: 300px;
+    width:402px;
+    display:inline-block;
+    border-left:2px solid white;
+    border-top:2px solid white;
+}
+#headtitle{
+    width:198px;
+    min-height: 56px;
+    float:left;
+    font-weight: bold;
+    color: #4E5964;
+    border-left:2px solid white;
+    border-top:2px solid white;
+}
+#linklist{
+    width:400px;
+    display:inline-block;
+    border-left:2px solid white;
+    border-top:2px solid white;
+    border-right:2px solid white;
+}
+#clear{
+    clear:both;
+}
+.posted{
+    border-bottom:2px solid white;
+    border-left:1px solid white;
+    border-right:1px solid white;
+    background-color: #e9e9fc;
+    padding-top: 0px;
+    margin-right: auto;
+    margin-left: auto; /*TOGLI IL BORDO SE VIENE DISCOSTATO TROPPO DOPO LA BARRA LATERALE*/
+    
+}
+.profile div{
+    display: inline-block;
+    padding-top:5px;
+}
+.nameanddate{
+    position: relative;
+    bottom:80px;
+}
+#desc_content{
+     background-color: #e9e9fc;
+}
+#desc_content p{
+    margin-bottom: -16px; /*VEDERE PERCHE!!!!!!!!! content nella pagina descrizione*/
+}
+#desc_content h2{
+    margin-top: 0px;
+}
+/*SE LA LARGHEZZA DELLA PAGINA E' MAGGIORE O UGUALE A 1024px:*/
+@media only screen and (max-width:1000px) /*+++++++++++++++CAMBIARE IN 1024++++++++++*/
+{
+    @media only screen and (min-width:480px)
+    {
+    /*SE LA LARGHEZZA E' COMPRESA FRA 480px e 1024px*/
+    #sidebar1
+{
+    min-height: 300px;
+    width:198px;
+    border-top:2px solid white;  
+    border-left:2px solid white;
+}
+}
+}
+@media only screen and (max-width:480px)
+{
+    /*SE LA LARGHEZZA DELLA PAGINA E' Minore o UGUALE A 480px:*/
+    #divBody{
+        width:430px;
+    }
+    #headtitle{
+        width:400px;
+        border-right:2px solid white;
+        text-align:center;
+        float:none;
+    }
+    #sidebar1{
+        width:auto;
+        min-height:0px;
+    }
+    #favorite{
+ 
+        width:390px; /*In tutto 400, 10 di padding*/
+        border-right:2px solid white;
+    }
+    #groups{
+        width:390px;
+        border-right:2px solid white;
+    }
+    h3{
+        margin-top:0px;
+    }
+}
