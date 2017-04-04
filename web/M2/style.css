@@ -12,7 +12,7 @@ body{
 }
 #divBody{
     display: block; 
-    width:606px; /*Spessore bordi*/
+    width:1006px; /*6px di Spessore bordi*/
     margin-left:auto;
     margin-right:auto;
 }
@@ -99,7 +99,7 @@ nav li.active{
 }
 #content{
     min-height: 300px;
-    width:402px;
+    width:802px;
     display:inline-block;
     border-left:2px solid white;
     border-top:2px solid white;
@@ -114,7 +114,7 @@ nav li.active{
     border-top:2px solid white;
 }
 #linklist{
-    width:400px;
+    width:800px;
     display:inline-block;
     border-left:2px solid white;
     border-top:2px solid white;
@@ -151,18 +151,16 @@ nav li.active{
     margin-top: 0px;
 }
 /*SE LA LARGHEZZA DELLA PAGINA E' MAGGIORE O UGUALE A 1024px:*/
-@media only screen and (max-width:1000px) /*+++++++++++++++CAMBIARE IN 1024++++++++++*/
-{
-    @media only screen and (min-width:480px)
-    {
-    /*SE LA LARGHEZZA E' COMPRESA FRA 480px e 1024px*/
-    #sidebar1
-{
-    min-height: 300px;
-    width:198px;
-    border-top:2px solid white;  
-    border-left:2px solid white;
-}
+@media only screen and (max-width:1024px) and (min-width:480px) /*+++++++++++++++CAMBIARE IN 1024++++++++++*/
+{   
+    #divBody{
+        width:806px;
+    }
+    #linklist{
+    width:600px;
+    }
+    #content{
+    width:602px;
 }
 }
 @media only screen and (max-width:480px)
@@ -170,6 +168,9 @@ nav li.active{
     /*SE LA LARGHEZZA DELLA PAGINA E' Minore o UGUALE A 480px:*/
     #divBody{
         width:430px;
+    }
+    #linklist{
+        width:400px;
     }
     #headtitle{
         width:400px;
@@ -180,6 +181,9 @@ nav li.active{
     #sidebar1{
         width:auto;
         min-height:0px;
+    }
+    #content{
+        width:402px;
     }
     #favorite{
  
