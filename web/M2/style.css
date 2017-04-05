@@ -114,7 +114,7 @@ nav li.active{
 #content{
     min-height: 300px;
     width:802px;
-    background-color: #759bbf;
+    background-color: #e2fff5;
     display:inline-block;
     border-left:2px solid white;
     border-top:2px solid white;
@@ -182,10 +182,7 @@ nav li.active{
     padding-top:5px;
 }
 #desc_content{
-     background-color: #e9e9fc;
-}
-#desc_content p{
-    margin-bottom: -16px; /*VEDERE PERCHE!!!!!!!!! content nella pagina descrizione*/
+     background-color: #e2fff5;
 }
 #desc_content h2{
     margin-top: 0px;
