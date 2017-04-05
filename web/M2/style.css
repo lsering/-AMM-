@@ -1,21 +1,23 @@
 body{
-    background-color: #BAD6F0;
+    background-color: #0AF2A4;
     font:16px/24px "Open Sans", Arial, sans-serif;
+    color:white;
 }
 #navtitle{
-    font-weight: bold;
     font-size: 30px;
-    color: #4E5964;
+    color: #ffffff;
     position:relative;
     top:15px;
     left:30px;
 }
 #divBody{
     display: block; 
-    width:1006px; /*6px di Spessore bordi*/
     margin-left:auto;
     margin-right:auto;
+    margin-bottom: 20px;
+    width:1004px;
 }
+
 h1{
     font-weight: bold;
     font-size: 30px;
@@ -29,21 +31,21 @@ h2{
 h3{
     font-weight: bold;
     font-size: 20px;
-    color: #4E5964;
+    color: #ffffff;
 }
 h4{
     font-weight: bold;
     font-size: 15px;
-    color: #4E5964;
+    color: #069867;
     margin-top:0px;
 }
 a:link{
     text-decoration: none;
-    color:#4E5964;
+    color:#e4f1ff;
 }
 a:visited{
      text-decoration: none;
-     color:#4E5964;
+     color:#e4f1ff;
 }
 a:hover{
    font-weight: bold; 
@@ -57,7 +59,7 @@ nav li{
     font-size:15px;
     padding-right: 10px;
     padding-left: 10px;
-    border-right: 2px solid #6B7B8A;
+    border-right: 2px solid #ffffff;
 }
 nav li:last-child{
     border-right:none;
@@ -102,6 +104,7 @@ nav li.active{
 }
  #sidebar1
 {
+    background-color:#069867;
     min-height: 300px;
     width:198px;
     float:left;
@@ -111,38 +114,68 @@ nav li.active{
 #content{
     min-height: 300px;
     width:802px;
+    background-color: #759bbf;
     display:inline-block;
     border-left:2px solid white;
     border-top:2px solid white;
+}
+#content div{ /*Definisco che dentro qualsiasi div all'interno di content le scritte devono essere del colore indicato'*/
+    color:#000000;
 }
 #headtitle{
     width:198px;
     min-height: 56px;
     float:left;
     font-weight: bold;
-    color: #4E5964;
     border-left:2px solid white;
     border-top:2px solid white;
+    background-color:#069867;
 }
 #linklist{
-    width:800px;
+    width:598px;
     display:inline-block;
     border-left:2px solid white;
     border-top:2px solid white;
     border-right:2px solid white;
+    background-color:#069867;
 }
+#blocklogin{
+    float:right;
+    width:200px;
+    min-height:56px;
+    border-right:2px solid white;
+    border-top:2px solid white;
+    background-color:#069867;
+}
+#logoutblock{
+    margin-left:40px;
+    margin-top:15px;
+}
+#logoutblock img{
+    display: inline;
+    position:relative;
+    top:2px;
+}
+#logoutblock h4{
+   display: inline;
+   color:#ffffff;
+}
+#logoutblock a{
+    text-decoration: underline;
+}
+
 #clear{
     clear:both;
 }
 .posted{
-    border-bottom:2px solid white;
+    border-bottom:2px solid #9bd2bf;
     border-left:1px solid white;
     border-right:1px solid white;
-    background-color: #e9e9fc;
+    background-color: #e2fff5;
     padding-top: 0px;
-    margin-right: auto;
-    margin-left: auto; /*TOGLI IL BORDO SE VIENE DISCOSTATO TROPPO DOPO LA BARRA LATERALE*/
-    
+}
+.profile{
+    padding-left:10px;
 }
 .profile div{
     display: inline-flex;
@@ -160,17 +193,25 @@ nav li.active{
 .datepost{
     padding-left:5px;
 }
-/*SE LA LARGHEZZA DELLA PAGINA E' MAGGIORE O UGUALE A 1024px:*/
-@media only screen and (max-width:1024px) and (min-width:480px) /*+++++++++++++++CAMBIARE IN 1024++++++++++*/
+/*SE LA LARGHEZZA DELLA PAGINA E' COMPRESA FRA 480px e 1024:*/
+@media only screen and (max-width:1024px) and (min-width:480px)
 {   
     #divBody{
         width:806px;
     }
     #linklist{
-    width:600px;
+    width:470px;
     }
     #content{
-    width:602px;
+    
+    width:604px;
+}
+    #blocklogin{
+    width:130px;
+}
+    #logoutblock{
+    margin-left: 10px; 
+    margin-top:0px;
 }
 }
 @media only screen and (max-width:480px)
@@ -206,5 +247,15 @@ nav li.active{
     }
     h3{
         margin-top:0px;
+    }
+    #logoutblock{
+        margin-left: 150px;
+        margin-top:0px;
+    }
+    #blocklogin{
+        width:400px;
+        float:none;
+        min-height: 20px;
+        border-left:2px solid white;
     }
 }
