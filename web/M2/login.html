@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NerdBook:Login</title>
+       <title>NerdBook: Bacheca</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Luigi Serreli">
@@ -9,28 +9,64 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
     <body>
-         <header>
-            <nav>
-                <ol>
-                    <li>Nerbook</li>
+        <div id="divBody">
+            <header>
+                <nav>
+                    <div id="headtitle">
+                        <span id="navtitle">Nerdbook</span>
+                    </div>
+                    <div id="linklist">
+                      <ol>
                     <li class="active"><a href="login.html">Login</a></li>
                     <li><a href="bacheca.html">Bacheca</a></li>
                     <li><a href="profilo.html">MyProfile</a></li>
                     <li><a href="descrizione.html">Descrizione</a></li>
-                </ol>
-        </nav>
-        </header>
-        <div id="divBody">
-            <div id="log">
+                </ol>  
+                    </div>
+                    <div id="blocklogin">
+                        <div id="logoutblock">
+                         <img src="img/Tesla.jpg" width="20" height="20" alt="Immagineprofilo1">
+                         <h4>Nikola</h4>
+                         <a href="login.html">Logout</a>
+                        </div>
+                    </div>
+            
+                </nav>
+            </header>
+            <div id="clear"></div>
+           <div id="sidebar1">
+               <div id="favorite">
+                   <h3>Preferiti:</h3>
+                   <ol>
+                       <li><div class="icon">Pinco Pallino</div></li>
+                       <li><div class="icon">Mario Rossi</div></li>
+                       <li><div class="icon">Franco Gialli</div></li>
+               </ol>
+               </div>
+               <div id="groups">
+                   <h3>Gruppi:</h3>
+                   <ol>
+                       <li><div class="icon">Gli sfigati</div></li>
+                       <li><div class="icon">Gruppo di studio</div></li>
+                   </ol>
+               </div>
+            </div>
+             <div id="content">
+                <div id="log">
                 <form method="post" action="elabora.java" >
-                  <div id="inputs">
+
                       <label for="user">Username</label>
+                      <div>
                     <input type="Text" name="userN" id="user" />
+                      </div>
                     <label for="pass">Password</label>
-                    <input type="Text" name="pass" id="pass" />
-                  </div>
+                     <div>
+                    <input type="Password" name="pass" id="pass" />
+                      </div>
                     <button type="submit">Invia</button>
                 </form>
+            </div>
+
             </div>
         </div>
     </body>

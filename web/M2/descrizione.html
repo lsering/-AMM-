@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NerdBook:Descrizione</title>
+       <title>NerdBook: Bacheca</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="NERD">
         <meta name="author" content="Luigi Serreli">
+        <meta name="keywords" content="Book">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
-   <div id="divBody">
+    <body>
+        <div id="divBody">
             <header>
                 <nav>
                     <div id="headtitle">
@@ -22,29 +23,38 @@
                     <li class="active"><a href="descrizione.html">Descrizione</a></li>
                 </ol>  
                     </div>
+                    <div id="blocklogin">
+                        <div id="logoutblock">
+                         <img src="img/Tesla.jpg" width="20" height="20" alt="Immagineprofilo1">
+                         <h4>Nikola</h4>
+                         <a href="login.html">Logout</a>
+                        </div>
+                    </div>
+            
                 </nav>
             </header>
+            <div id="clear"></div>
            <div id="sidebar1">
                <div id="favorite">
                    <h3>Preferiti:</h3>
                    <ol>
-                    <li><img src ="img/iconauser.png" class ="icon" alt="icona">Pinco Pallino</li>
-                    <li><img src ="img/iconauser.png" class ="icon" alt="icona">Mario Rossi</li>
-                    <li><img src ="img/iconauser.png" class ="icon" alt="icona">Franco Gialli</li>
+                       <li><div class="icon">Pinco Pallino</div></li>
+                       <li><div class="icon">Mario Rossi</div></li>
+                       <li><div class="icon">Franco Gialli</div></li>
                </ol>
                </div>
                <div id="groups">
                    <h3>Gruppi:</h3>
                    <ol>
-                    <li><img src ="img/icongrops.png" class ="icon" alt="icona">Gli sfigati</li>
-                    <li><img src ="img/icongrops.png" class ="icon" alt="icona">Gruppo di studio</li>
+                       <li><div class="icon">Gli sfigati</div></li>
+                       <li><div class="icon">Gruppo di studio</div></li>
                    </ol>
                </div>
             </div>
-        <div id="content">
-            <div id="desc_content">
+             <div id="content">
+                  <div id="desc_content">
                 <h2>Domende comuni</h2>
-                <h3>Sommario:</h3>
+                <h4>Sommario:</h4>
                 <ul>
                     <li><a href="#segnalibro1"><h4>Il sito è a pagamento?</h4></a></li>
                     <li><a href="#segnalibro2"><h4>A chi è dedicato?</h4></a></li>
@@ -57,7 +67,7 @@
                     </ul>
               
             </div>
+            </div>
         </div>
-   </div>
     </body>
 </html>

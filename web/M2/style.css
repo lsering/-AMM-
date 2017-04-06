@@ -39,21 +39,27 @@ h4{
     color: #069867;
     margin-top:0px;
 }
+
+a:visited{
+    text-decoration: none;
+    color:#e4f1ff;
+}
 a:link{
     text-decoration: none;
     color:#e4f1ff;
 }
-a:visited{
-     text-decoration: none;
-     color:#e4f1ff;
-}
+
 a:hover{
    font-weight: bold; 
 }
 p{
     padding-left:4px;
 }
-
+input:focus{
+   outline: none;
+   border-color:#ccffcc;
+   box-shadow: 0 0 10px #ccffcc;
+}
 nav li{
     display: inline;
     font-size:15px;
@@ -174,6 +180,13 @@ nav li.active{
     background-color: #e2fff5;
     padding-top: 0px;
 }
+.postedcontent{
+    padding-left:20px;
+    padding-bottom:5px;
+}
+#content a:link, #content a:visited{
+    color:#069867; /*SE NON CAMBIO NON SI VEDE CON LO SFONDO CHE HO SCELTO*/
+}
 .profile{
     padding-left:10px;
 }
@@ -189,6 +202,28 @@ nav li.active{
 }
 .datepost{
     padding-left:5px;
+}
+.opzionale2{
+    padding-left:4px;
+}
+#log{
+    width:200px;
+    padding-top:50px;
+    margin-left:auto;
+    margin-right:auto;
+}
+#log input{
+    width:85%;
+    border-radius: 5px;
+}
+#log button{
+    width:87%; /*Il bottone risulta leggermente + corto degli imputs*/
+    background: rgba(6, 152, 103, 0.38);
+    border-radius: 5px;
+    box-shadow: inset -1px -2px 4px 0px rgb(155, 234, 208);
+}
+#log div{
+    padding-bottom:4px;
 }
 /*SE LA LARGHEZZA DELLA PAGINA E' COMPRESA FRA 480px e 1024:*/
 @media only screen and (max-width:1024px) and (min-width:480px)
