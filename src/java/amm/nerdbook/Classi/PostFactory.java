@@ -44,5 +44,15 @@ public class PostFactory {
         }
         return p;
     }
+    public ArrayList<Post> getPostListByGroup(Group gr)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        for(Post p:this.postList)
+        {
+            if(p.getGroupId() == gr.getId())
+                posts.add(p);
+        }
+        return posts;
+    }
     
 }

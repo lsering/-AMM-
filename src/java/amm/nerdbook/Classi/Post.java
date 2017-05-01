@@ -11,10 +11,13 @@ package amm.nerdbook.Classi;
  */
 public class Post {
 
+ 
+
     private int id;
     private User user;
     private String content;
     private Attached att;
+    private int GroupId;
     public Post(int id,User user,String content,Attached a)
     {
         this.id = id;
@@ -28,6 +31,14 @@ public class Post {
         this.user = user;
         this.content = content;
         this.att = null;
+    }
+     public Post(int id,User user,String content,Attached a,Group g)
+    {
+        this.id = id;
+        this.user = user;
+        this.content = content;
+        this.att = a;
+        this.GroupId = g.getId();
     }
     /**
      * @return the id
@@ -83,5 +94,18 @@ public class Post {
      */
     public void setAtt(Attached att) {
         this.att = att;
+    }
+       /**
+     * @return the GroupId
+     */
+    public int getGroupId() {
+        return GroupId;
+    }
+
+    /**
+     * @param GroupId the GroupId to set
+     */
+    public void setGroupId(int GroupId) {
+        this.GroupId = GroupId;
     }
 }
