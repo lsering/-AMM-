@@ -345,3 +345,11 @@ di decorare. Un' immagine non decorativa può essere un icona che richiama il
 profilo di un utente. In quel caso l'avrei richiamata con il tag html <img> 
 in quanto può avere la funzione di link o la semplice funzione di essere richiamata
 da un database*/
+
+#InvalidData{
+    position:relative;
+    left:20px;
+    top:20px;
+    font-weight: bold;
+    
+}
