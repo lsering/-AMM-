@@ -13,12 +13,18 @@ public class Attached {
 
     private int type;
     private String content;
+    //Se l'allegato non è presente type=-1
     //Se l'allegato ha type=0 è un link
     //Se l'allegato ha type=1 è un immagine
     public Attached(int type,String content)
     {
         this.type = type;
         this.content = content;
+    }
+    public Attached(int type)
+    {
+        this.type = type;
+        this.content = "";
     }
     /**
      * @return the type

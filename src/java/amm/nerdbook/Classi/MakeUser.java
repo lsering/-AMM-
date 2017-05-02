@@ -16,11 +16,11 @@ public class MakeUser {
     public MakeUser()
     {
         this.buffer = new ArrayList<>();
-        User user1 = new User(1,"Niky","Nikola","Tesla","nikola@gmail.com","abcde","M2/img/Tesla.jpg");
+        User user1 = new User(1,"Niky","Nikola","Tesla","nikola@gmail.com","abcde","img/Tesla.jpg");
         buffer.add(user1);
-        User user2 = new User(2,"alb1","Albert","Einstein","AEinst@gmail.com","abcde","M2/img/Einstein.jpg");
+        User user2 = new User(2,"alb1","Albert","Einstein","AEinst@gmail.com","abcde","/img/Einstein.jpg");
         buffer.add(user2);
-        User user3 = new User(3,"Isy","Isaac","Newton","ISNEW@gmail.com","abcde","M2/img/Newton.jpg");
+        User user3 = new User(3,"Isy","Isaac","Newton","ISNEW@gmail.com","abcde","/img/Newton.jpg");
         buffer.add(user3);
         
     }

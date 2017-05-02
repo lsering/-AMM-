@@ -11,26 +11,31 @@ package amm.nerdbook.Classi;
  */
 public class Post {
 
+   
  
 
     private int id;
     private User user;
     private String content;
+    private String data;
     private Attached att;
     private int GroupId;
-    public Post(int id,User user,String content,Attached a)
+    public Post(int id,User user,String content,String data,Attached a)
     {
+        
         this.id = id;
         this.user = user;
         this.content = content;
+        this.data = data;
         this.att = a;
     }
-     public Post(int id,User user,String content)
+     public Post(int id,User user,String content,String data)
     {
         this.id = id;
         this.user = user;
         this.content = content;
-        this.att = null;
+        this.data = data;
+        this.att=new Attached(-1);
     }
      public Post(int id,User user,String content,Attached a,Group g)
     {
@@ -108,4 +113,18 @@ public class Post {
     public void setGroupId(int GroupId) {
         this.GroupId = GroupId;
     }
+     /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
+    }
+
 }

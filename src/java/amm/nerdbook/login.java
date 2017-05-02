@@ -26,14 +26,14 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Apro una sessione
-        HttpSession sessione = request.getSession();
+        HttpSession sessione = request.getSession(false);
         //Controllo che l'utente non sia già loggato. Nel caso lo reindirizzo (assicurandomi
         //che l'utente sia valido) alla bacheca
         //Se l'utente è loggato la sessione "log" avrà un valore true
         if(request.getParameter("logout")!=null)
         {
             sessione.invalidate();
-            request.getRequestDispatcher("loginForm.jsp").forward(request, response);
+            request.getRequestDispatcher("Bacheca").forward(request, response);
             return;
         }
         if (sessione.getAttribute("log") != null &&

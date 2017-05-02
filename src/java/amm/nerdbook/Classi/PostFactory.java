@@ -6,6 +6,7 @@
 package amm.nerdbook.Classi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,14 +17,18 @@ public class PostFactory {
     public PostFactory()
     {
      MakeUser mu = new MakeUser();
-     Post p1 = new Post(1,mu.getUserById(1),"Questo è un post di prova");
+     Post p1 = new Post(1,mu.getUserById(1),"Questo è un post di prova","01/05/2017-22:00");
      Attached att1 = new Attached(1,"img/mela.jpg");
-     Post p2 = new Post(2,mu.getUserById(2),"",att1);
+     Post p2 = new Post(2,mu.getUserById(2),"","02/03/2017-11:00",att1);
      Attached att2 = new Attached(0,"https://it.wikipedia.org/wiki/Onda_gravitazionale");
-     Post p3 = new Post(3,mu.getUserById(3),"Avevo Ragione",att2);
+     Post p3 = new Post(3,mu.getUserById(3),"Avevo Ragione","01/06/2017-20:00",att2);
+     Post p4 = new Post(4,mu.getUserById(1),"Prova","02/05/2017-241242");
+     Post p5 = new Post(5,mu.getUserById(2),"Prova","03/10/2016-241242");
      this.postList.add(p1);
      this.postList.add(p2);
      this.postList.add(p3);
+     this.postList.add(p4);
+     this.postList.add(p5);
              }
     public Post getPostByid(int id)
     {
@@ -34,12 +39,12 @@ public class PostFactory {
         }
         return null;
     }
-    public ArrayList<Post> getPostbyUser(User u)
+    public List<Post> getPostbyUser(User u)
     {
-        ArrayList<Post> p = new ArrayList<>();
+        List<Post> p = new ArrayList<>();
         for(Post post:this.postList)
         {
-            if(post.getId()==u.getId())
+            if(post.getUser().getId()==u.getId())
                 p.add(post);
         }
         return p;
