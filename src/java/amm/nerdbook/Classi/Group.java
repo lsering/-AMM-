@@ -21,13 +21,15 @@ public class Group {
     private String Description;
     private ArrayList<User> userList;
     private ArrayList<Post> posts;
-    public Group(int id,String name,String Desc,ArrayList<User> usL)
+    private String iconurl;
+    public Group(int id,String name,String Desc,ArrayList<User> usL,String iconurl)
     {
         this.id = id;
         this.groupName = name;
         this.Description = Desc;
         this.userList = usL;
         this.posts = new ArrayList<>();
+        this.iconurl = iconurl;
     }
     //SE NON CI SONO UTENTI NEL GRUPPO FACCIO UN OVERLOAD DEL METODO COSTRUTTORE 
     //PER NON METTERE COME PARAMETRO LA LISTA
@@ -106,5 +108,19 @@ public class Group {
      */
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
+    }
+
+    /**
+     * @return the iconurl
+     */
+    public String getIconurl() {
+        return iconurl;
+    }
+
+    /**
+     * @param iconurl the iconurl to set
+     */
+    public void setIconurl(String iconurl) {
+        this.iconurl = iconurl;
     }
 }

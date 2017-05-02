@@ -18,9 +18,9 @@ public class MakeUser {
         this.buffer = new ArrayList<>();
         User user1 = new User(1,"Niky","Nikola","Tesla","nikola@gmail.com","abcde","img/Tesla.jpg");
         buffer.add(user1);
-        User user2 = new User(2,"alb1","Albert","Einstein","AEinst@gmail.com","abcde","/img/Einstein.jpg");
+        User user2 = new User(2,"alb1","Albert","Einstein","AEinst@gmail.com","abcde","img/Einstein.jpg","E = M*C^2");
         buffer.add(user2);
-        User user3 = new User(3,"Isy","Isaac","Newton","ISNEW@gmail.com","abcde","/img/Newton.jpg");
+        User user3 = new User(3,"Isy","Isaac","Newton","ISNEW@gmail.com","abcde","img/Newton.jpg","F=m * a");
         buffer.add(user3);
         
     }
@@ -61,5 +61,15 @@ public class MakeUser {
          }
         }
         return id;
-    }    
+    }
+    public ArrayList<User> getUserList(int id)
+    {
+        ArrayList<User> arr = new ArrayList<>();
+        //RESTITUISCE LA LISTA DI UTENTI ESCLUDENDO L'UTENTE CON ID PASSATO COME PARAMETRO
+        for(User u:this.buffer)
+            if(u.getId()!=id)
+                arr.add(u);
+           return arr;     
+    }
+    
 }

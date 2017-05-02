@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head> 
     <body>
+        <c:set var="page" value="bacheca" scope="request"/>
         <jsp:include page="header.jsp"/>
         <div id="divBody">
             <jsp:include page="sidebar.jsp"/>

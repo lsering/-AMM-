@@ -42,15 +42,24 @@ public class bachecaServlet extends HttpServlet {
         HttpSession s = request.getSession(false);
         if(s!=null && s.getAttribute("log")!=null &&
            s.getAttribute("log").equals(true)){
-       //DEVO PASSARE ALLA PROSSSIMA JSP L'OGGETTO POST DA STAMPARE
-        PostFactory pf = new PostFactory();
-        MakeUser mu = new MakeUser();
-        int id = (int)s.getAttribute("user_id");
-        User u = mu.getUserById(id);
-        List<Post> posts = pf.getPostbyUser(u);
-        request.setAttribute("user", mu.getUserById(id));
-        request.setAttribute("posts", posts);
-        request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);
+            //Controllo se visit_user ha un valore. Così reindirizzo alla bacheca da visitare
+            String user = request.getParameter("visit_user");
+            int id;
+            if(user !=null)
+                id = Integer.parseInt(user);
+            else
+                id=(int)s.getAttribute("user_id");
+               PostFactory pf = new PostFactory();
+                 MakeUser mu = new MakeUser();
+                 List<Post> posts;
+                 User u = mu.getUserById(id);;
+       //DEVO PASSARE ALLA PROSSSIMA JSP GLI OGGETTI DA STAMPARE
+                 posts = pf.getPostbyUser(u);
+                 request.setAttribute("user", u);
+                 request.setAttribute("posts", posts);
+                 request.setAttribute("users",mu.getUserList(id));
+                 request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);
+            
         }
             else{ //UTENTE NON LOGGATO
             request.getRequestDispatcher("Login").forward(request, response);

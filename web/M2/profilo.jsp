@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
-        <title>NerdBook: Bacheca</title>
+        <title>NerdBook: Profilo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Luigi Serreli">
@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head> 
     <body>
+        <c:set var="page" value="profilo" scope="request"/>
         <jsp:include page="header.jsp"/>
          <div id="divBody">
         <jsp:include page="sidebar.jsp"/>
@@ -26,7 +27,7 @@
                         <div id="img">
                             <div>
                                 <label for="imgPost">
-                                    <img src="img/Tesla.jpg" alt="immprofilo" width="100" height="100">
+                                    <img src="${user.urlImmagineProfilo}" alt="immprofilo" width="100" height="100">
                                 </label>
                             </div>
                             <div>

@@ -14,25 +14,26 @@ import java.util.ArrayList;
 public class User {
 
     
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-   
    private int id;
    private String username;
    private String name;
    private String surname;
+   private String frase;
    private String email;
    private String password;
    private String urlImmagineProfilo;
    private ArrayList<Integer> followed;
+  public User(int id,String username,String name,String surname,String email,String password,String urlim,String frase)
+  {
+      this.id=id;
+      this.username = username;
+      this.name=name;
+      this.surname = surname;
+      this.password=password;
+      this.email=email;
+      this.urlImmagineProfilo = urlim;
+      this.frase = frase;
+  }
   public User(int id,String username,String name,String surname,String email,String password,String urlim)
   {
       this.id=id;
@@ -42,6 +43,7 @@ public class User {
       this.password=password;
       this.email=email;
       this.urlImmagineProfilo = urlim;
+      this.frase = null;
   }
     public void setUrlImmagineProfilo(String urlImmagineProfilo) {
         this.urlImmagineProfilo = urlImmagineProfilo;
@@ -126,5 +128,31 @@ public class User {
     /**
      * @param urlImmagineProfilo the urlImmagineProfilo to set
      */
+    /**
+     * @return the frase
+     */
+    public String getFrase() {
+        return frase;
+    }
+
+    /**
+     * @param frase the frase to set
+     */
+    public void setFrase(String frase) {
+        this.frase = frase;
+    }
+
+    
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+   
 
 }

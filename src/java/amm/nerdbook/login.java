@@ -27,19 +27,33 @@ public class login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //Apro una sessione
         HttpSession sessione = request.getSession(false);
-        //Controllo che l'utente non sia già loggato. Nel caso lo reindirizzo (assicurandomi
-        //che l'utente sia valido) alla bacheca
-        //Se l'utente è loggato la sessione "log" avrà un valore true
-        if(request.getParameter("logout")!=null)
+        //CASO LOGOUT
+        if(request.getParameter("log-out")!=null)
         {
             sessione.invalidate();
-            request.getRequestDispatcher("Bacheca").forward(request, response);
+            request.setAttribute("page","login");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
+         //Controllo che l'utente non sia già loggato. Nel caso lo reindirizzo (assicurandomi
+        //che l'utente sia valido) alla bacheca
+        //Se l'utente è loggato la sessione "log" avrà un valore true
         if (sessione.getAttribute("log") != null &&
             sessione.getAttribute("log").equals(true)) {
-
-            request.getRequestDispatcher("Bacheca").forward(request, response);
+            MakeUser mu = new MakeUser();
+            User u = mu.getUserById((Integer)sessione.getAttribute("user_id"));
+            request.setAttribute("user",u);
+            if(u.getName()==null || u.getSurname()==null || u.getFrase()==null)
+            {
+              request.setAttribute("page","profilo");
+              request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
+            }
+                
+            else
+            {
+                request.setAttribute("page","bacheca");
+                request.getRequestDispatcher("Bacheca").forward(request, response); 
+            }  
             return;
         }
         else
@@ -64,6 +78,7 @@ public class login extends HttpServlet {
                     sessione.setAttribute("user_id", id);
                     //Passo alla prossima jsp (profilo) l'oggetto user
                     request.setAttribute("user", mu.getUserById(id));
+                    request.setAttribute("page","profilo");
                     request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
                     return;
                 }
@@ -72,6 +87,7 @@ public class login extends HttpServlet {
                     //nel caso le credenziali siano errate
                     //mando alla jsp di login un flag tale che dia all'utente un messaggio di errore
                     request.setAttribute("invalidData",true);
+                    request.setAttribute("page","login");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                     return;
                 }
