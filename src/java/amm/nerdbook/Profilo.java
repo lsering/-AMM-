@@ -39,7 +39,7 @@ public class Profilo extends HttpServlet {
            s.getAttribute("log").equals(true)){
             //Caso utente autenticato
             int id=(int)s.getAttribute("user_id");
-            MakeUser mu = new MakeUser();
+            MakeUser mu = MakeUser.getInstance();
             User u = mu.getUserById(id);
             request.setAttribute("user", u);
             request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
