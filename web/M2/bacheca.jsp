@@ -22,8 +22,9 @@
         <div id="divBody">
             <jsp:include page="sidebar.jsp"/>
             <div id="content">
+                <div id="profileTitle"><h4>Bacheca di ${user.name}</h4></div>
                 <div id="send_post">
-                    <form method="post" action="sendPost">
+                    <form method="post" action="SendPost?visit_user=${visit_user}">
                         <div> <label for="textPost" id="prova">A cosa stai pensando?</label>
                               <textarea name="textPost" id="textPost"></textarea>
                               <div><input type="file" id="load" name="load"></div>
@@ -36,11 +37,11 @@
                       <div class="postedcontent">
                         <div class="profile">
                             <div class="profileimg">
-                                <img src="${user.urlImmagineProfilo}" width="100" height="100" alt="Immagineprofilo">  
+                                <img src="${post.user.urlImmagineProfilo}" width="100" height="100" alt="Immagineprofilo">  
                             </div>    
                             <div class="nameanddate">
                                 <div class="icon">
-                                    <h4>${user.name}</h4></div>
+                                    <h4>${post.user.name}</h4></div>
                                 <div class="datepost">${post.data}</div>
                             </div>
                         </div>

@@ -12,15 +12,18 @@ package amm.nerdbook.Classi;
 public class Post {
 
    
+
+   
  
 
     private int id;
-    private User user;
+    private User user; //Mittente
     private String content;
     private String data;
     private Attached att;
     private int GroupId;
-    public Post(int id,User user,String content,String data,Attached a)
+    private int id_user_bacheca;
+    public Post(int id,User user,String content,String data,Attached a,int id_user)
     {
         
         this.id = id;
@@ -28,14 +31,16 @@ public class Post {
         this.content = content;
         this.data = data;
         this.att = a;
+        this.id_user_bacheca = id_user;
     }
-     public Post(int id,User user,String content,String data)
+     public Post(int id,User user,String content,String data,int id_user)
     {
         this.id = id;
         this.user = user;
         this.content = content;
         this.data = data;
         this.att=new Attached(-1);
+        this.id_user_bacheca = id_user;
     }
      public Post(int id,User user,String content,Attached a,Group g)
     {
@@ -125,6 +130,19 @@ public class Post {
      */
     public void setData(String data) {
         this.data = data;
+    }
+     /**
+     * @return the id_user_bacheca
+     */
+    public int getId_user_bacheca() {
+        return id_user_bacheca;
+    }
+
+    /**
+     * @param id_user_bacheca the id_user_bacheca to set
+     */
+    public void setId_user_bacheca(int id_user_bacheca) {
+        this.id_user_bacheca = id_user_bacheca;
     }
 
 }

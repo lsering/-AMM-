@@ -328,6 +328,9 @@ button{
         border-left:2px solid white;
         border-top:0px;
     }
+    #send_post label{
+    margin-left:85px;
+}
 }
 /*IMMAGINI DECORATIVE*/
 #favorite .icon:before{
@@ -357,7 +360,9 @@ da un database*/
     font-size: 20px;
 }
 #send_post{
+    border-bottom:5px solid #c3dad2;
     margin-bottom: 10px;
+    text-align: center;
 }
 #send_post form{
    background-color:#cbf1e4;
@@ -387,9 +392,13 @@ da un database*/
 #send_post label{
     width:41%;
     display:block;
+    margin-left:120px;
 }
 #send_post input[type="file"]
 {
     width:20%;
     cursor: pointer;
+}
+#profileTitle{
+    text-align: center;
 }

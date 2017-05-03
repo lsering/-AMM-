@@ -12,6 +12,14 @@ import java.util.ArrayList;
  * @author Luigi Serreli
  */
 public class MakeUser {
+    private static MakeUser singleton;
+
+    public static MakeUser getInstance() {
+        if (singleton == null) {
+            singleton = new MakeUser();
+        }
+        return singleton;
+    }
     private ArrayList<User> buffer;
     public MakeUser()
     {

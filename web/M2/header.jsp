@@ -28,7 +28,7 @@
                 int logged = 0;
            if(s!=null && s.getAttribute("log")!=null &&
               s.getAttribute("log").equals(true)){
-                MakeUser mu = new MakeUser();
+                MakeUser mu = MakeUser.getInstance();
                 int id = (Integer)s.getAttribute("user_id");
                 User u = mu.getUserById(id);
                 out.println("<img src=\""+u.getUrlImmagineProfilo()+"\" width=\"20\" height=\"20\" alt=\"ImmagineProfilo\"");

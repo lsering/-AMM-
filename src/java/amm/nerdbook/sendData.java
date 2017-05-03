@@ -41,7 +41,7 @@ public class sendData extends HttpServlet {
             String surname = request.getParameter("cognome");
             String frase = request.getParameter("presentazione");
             String pswconf = request.getParameter("confpassword");
-            MakeUser mu = new MakeUser();
+            MakeUser mu = MakeUser.getInstance();
             User u = mu.getUserById(id);
             //PER IL MOMENTO METTO IL CONTROLLO CHE NOME,COGNOME E FRASE SONO OBBLIGATORI
             //IN TEORIA PER IL MOMENTO FUNZIONANO SOLO QUELLI
@@ -54,7 +54,7 @@ public class sendData extends HttpServlet {
                  request.setAttribute("ErrorData",false);
                  request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
             }
-            //CON ERRORDATA,TRUE POTRO' IMPLEMENTARE UN MODO PER RESTUIRE UN MESSAGGIO DI ERRORE
+            //CON ERRORDATA TRUE POTRO' IMPLEMENTARE UN MODO PER RESTUIRE UN MESSAGGIO DI ERRORE
             
             
         }

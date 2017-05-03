@@ -8,13 +8,10 @@ package amm.nerdbook;
 import amm.nerdbook.Classi.MakeUser;
 import amm.nerdbook.Classi.Post;
 import amm.nerdbook.Classi.PostFactory;
-import amm.nerdbook.Classi.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Luigi Serreli
  */
-public class bachecaServlet extends HttpServlet {
+
+public class SendPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,37 +36,65 @@ public class bachecaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //DEVO CONTROLLARE CHE LA SESSIONE SIA OK, NEL CASO ORGANIZZO TUTTO PER MANDARE LA BACHECA
-        HttpSession s = request.getSession(false);
-        if(s!=null && s.getAttribute("log")!=null &&
-           s.getAttribute("log").equals(true))
-        {
-            //Controllo se visit_user ha un valore. Così reindirizzo alla bacheca da visitare
+        //Controllo la sessione:
+        HttpSession sessione = request.getSession(false);
+        if (sessione.getAttribute("log") != null &&
+            sessione.getAttribute("log").equals(true)) {
+            int id=(int)sessione.getAttribute("user_id");
+            //Ottengo la data attuale
+            //trovo l'id della bacheca. Se visit_user è settato prendo quello senno lo prendo dalla sessione
             String user = request.getParameter("visit_user");
-            int id;
-            if(user !=null)
-                id = Integer.parseInt(user);
+            int id_bacheca;
+            if(user != null)
+            {
+                try{
+                    id_bacheca =Integer.parseInt(user); //POTREBBE DARE ERRORE CONVERSIONE
+                }catch(Exception exc){
+                    id_bacheca = id;
+                }
+            }
             else
-                id=(int)s.getAttribute("user_id");
-               PostFactory pf = PostFactory.getInstance();
-                 MakeUser mu = MakeUser.getInstance();
-                 List<Post> posts;
-                 User u = mu.getUserById(id);
-       //DEVO PASSARE ALLA PROSSSIMA JSP GLI OGGETTI DA STAMPARE
-                 posts = pf.getPostById(id);
-                 request.setAttribute("user", u);
-                 request.setAttribute("visit_user", user);
-                 request.setAttribute("posts", posts);
+              id_bacheca = id;
+            Calendar c=Calendar.getInstance();
+            MakeUser mu = MakeUser.getInstance();
+            String text = request.getParameter("textPost");
+            //La procedura per inserire allegati(file o link) verrà
+            //implementata in seguito
+            PostFactory pf = PostFactory.getInstance();
+            if(text != null)
+            {
+                Post p = new Post(id,mu.getUserById(id),text,c.getTime().toString(),id_bacheca);
+                pf.addPost(p);
+                 request.setAttribute("user", mu.getUserById(id_bacheca));
+                 request.setAttribute("posts", pf.getPostById(id_bacheca));
                  request.setAttribute("users",mu.getUserList(id));
-                 request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);
+                 request.setAttribute("visit_user", user);
+                request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);  
+                
+            }
+            else // SE NON C'E' NIENTE NEL FORM
+            {
+                request.setAttribute("user", mu.getUserById(id_bacheca));
+                 request.setAttribute("posts", pf.getPostById(id_bacheca));
+                 request.setAttribute("users",mu.getUserList(id));
+                 request.setAttribute("visit_user", user);
+                 try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet prova</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet prova at 2222222222 " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+                //request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);  
+            } 
             
-        }
-            else{ //UTENTE NON LOGGATO
-                        request.setAttribute("ErrorLog",true);
-                        request.getRequestDispatcher("Login").forward(request, response);
-        }
+       }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -110,3 +136,4 @@ public class bachecaServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+

@@ -38,9 +38,10 @@ public class login extends HttpServlet {
          //Controllo che l'utente non sia già loggato. Nel caso lo reindirizzo (assicurandomi
         //che l'utente sia valido) alla bacheca
         //Se l'utente è loggato la sessione "log" avrà un valore true
-        if (sessione.getAttribute("log") != null &&
-            sessione.getAttribute("log").equals(true)) {
-            MakeUser mu = new MakeUser();
+        if(sessione!=null && sessione.getAttribute("log")!=null &&
+           sessione.getAttribute("log").equals(true))
+        {
+            MakeUser mu = MakeUser.getInstance();
             User u = mu.getUserById((Integer)sessione.getAttribute("user_id"));
             request.setAttribute("user",u);
             if(u.getName()==null || u.getSurname()==null || u.getFrase()==null)
@@ -64,7 +65,7 @@ public class login extends HttpServlet {
             String username = request.getParameter("userN"); 
             String password = request.getParameter("pass");//pass e UserN devono corrispondere all'id degli input
             //Creo un'istanza di MakeUser
-            MakeUser mu = new MakeUser();
+            MakeUser mu = MakeUser.getInstance();
             if(username != null && password != null)
             {
                 int id = mu.getidByUsernameAndPassword(username, password);
