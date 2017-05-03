@@ -22,6 +22,15 @@
         <div id="divBody">
             <jsp:include page="sidebar.jsp"/>
             <div id="content">
+                <div id="send_post">
+                    <form method="post" action="sendPost">
+                        <div> <label for="textPost" id="prova">A cosa stai pensando?</label>
+                              <textarea name="textPost" id="textPost"></textarea>
+                              <div><input type="file" id="load" name="load"></div>
+                        </div>
+                        <input type="submit">                        
+                    </form>
+                </div>
                  <c:forEach var ="post" items="${posts}">
                     <div class="posted">
                       <div class="postedcontent">

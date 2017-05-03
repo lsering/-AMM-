@@ -4,6 +4,14 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>amm.nerdbook.login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Profilo_Serv</servlet-name>
+        <servlet-class>amm.nerdbook.Profilo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sendData</servlet-name>
+        <servlet-class>amm.nerdbook.sendData</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/M2/Login</url-pattern>
@@ -20,6 +28,18 @@
         <servlet-name>Profilo</servlet-name>
         <jsp-file>profilo.jsp</jsp-file>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>Profilo_Serv</servlet-name>
+        <url-pattern>/Profilo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Profilo_Serv</servlet-name>
+        <url-pattern>/M2/profilo.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendData</servlet-name>
+        <url-pattern>/M2/sendData</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

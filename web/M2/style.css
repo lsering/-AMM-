@@ -354,5 +354,42 @@ da un database*/
     
 }
 #login{
-    font-size: 30px;
+    font-size: 20px;
+}
+#send_post{
+    margin-bottom: 10px;
+}
+#send_post form{
+   background-color:#cbf1e4;
+    
+}
+#send_post textarea
+{
+     width:50%;
+    border-radius: 5px;
+    background-color:#e5f5ef;
+    outline: none;
+    border-color:#75c575;
+    box-shadow: 0 0 10px #ccffcc;
+}
+#send_post input[type="submit"]{
+    width:51%;
+    height:20px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px Arial, Helvetica, sans-serif;
+    color: #fff;
+    border: solid 1px #0b6345;
+    background: #069867;
+}
+#send_post label{
+    width:41%;
+    display:block;
+}
+#send_post input[type="file"]
+{
+    width:20%;
+    cursor: pointer;
 }

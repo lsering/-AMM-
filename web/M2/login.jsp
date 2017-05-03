@@ -32,6 +32,9 @@
                 <c:if test="${invalidData == true}">
                     <div id="InvalidData">I dati inseriti non sono corretti</div>
                 </c:if>
+                <c:if test="${ErrorLog == true}">
+                    <div id="InvalidData">ACCESSO NEGATO.EFFETTUA IL LOGIN</div>
+                </c:if>
             <div id="log">
                     <form method="post" action="Login" >
 

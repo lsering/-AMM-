@@ -23,7 +23,7 @@
          <div id="content">
 
                 <div id="contentidentity">
-                    <form method="post" action="send_data.java">
+                    <form method="post" action="sendData">
                         <div id="img">
                             <div>
                                 <label for="imgPost">
@@ -60,7 +60,12 @@
                             <div id="send">
                                 <button type="submit">Invia</button>
                             </div>
-
+                      <c:if test="${ErrorData == true}">
+                    <div id="InsData">Errore inserimento</div>
+                      </c:if>
+                    <c:if test="${ErrorData == false}">
+                    <div id="InsData">Dati inseriti con successo</div>
+                    </c:if>
                         </div>
                     </form>
                 </div>

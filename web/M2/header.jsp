@@ -16,7 +16,7 @@
                     <li <c:if test ="${page == 'login'}">class="active"</c:if>><a href="Login">Login</a></li>
                     <li <c:if test ="${page == 'bacheca'}">class="active"</c:if>><a href="Bacheca">Bacheca</a></li>
                     <li <c:if test ="${page == 'profilo'}">class="active"</c:if>>
-                        <a href="profilo.jsp">MyProfile</a></li>
+                        <a href="profilo.html">MyProfile</a></li>
                     <li><a href="descrizione.html">Descrizione</a></li>
                 </ol>  
             </nav>
