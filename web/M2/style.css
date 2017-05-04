@@ -402,3 +402,12 @@ da un database*/
 #profileTitle{
     text-align: center;
 }
+#infoPost{
+    width:30%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: left;
+}
+.infoPost{
+    color:red;
+}

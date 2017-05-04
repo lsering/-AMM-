@@ -45,8 +45,9 @@ public class SendPost extends HttpServlet {
             //trovo l'id della bacheca. Se visit_user è settato prendo quello senno lo prendo dalla sessione
             String user = request.getParameter("visit_user");
             int id_bacheca;
-            if(user != null)
+            if(user != null && Integer.parseInt(user)!=0 )
             {
+               
                 try{
                     id_bacheca =Integer.parseInt(user); //POTREBBE DARE ERRORE CONVERSIONE
                 }catch(Exception exc){
@@ -68,8 +69,9 @@ public class SendPost extends HttpServlet {
                  request.setAttribute("user", mu.getUserById(id_bacheca));
                  request.setAttribute("posts", pf.getPostById(id_bacheca));
                  request.setAttribute("users",mu.getUserList(id));
-                 request.setAttribute("visit_user", user);
-                request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);  
+                 request.setAttribute("visit_user", id_bacheca);
+                 String path ="Bacheca?visit_user="+id_bacheca;
+                request.getRequestDispatcher(path).forward(request, response);  
                 
             }
             else // SE NON C'E' NIENTE NEL FORM
@@ -78,18 +80,7 @@ public class SendPost extends HttpServlet {
                  request.setAttribute("posts", pf.getPostById(id_bacheca));
                  request.setAttribute("users",mu.getUserList(id));
                  request.setAttribute("visit_user", user);
-                 try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet prova</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet prova at 2222222222 " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+                 //PER ORA NON FACCIO NIENTE
                 //request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);  
             } 
             

@@ -24,10 +24,15 @@
             <div id="content">
                 <div id="profileTitle"><h4>Bacheca di ${user.name}</h4></div>
                 <div id="send_post">
-                    <form method="post" action="SendPost?visit_user=${visit_user}">
-                        <div> <label for="textPost" id="prova">A cosa stai pensando?</label>
+                   <c:if test ="${visit_user == null}"> 
+                       <form method="post" action="ConfirmPage.jsp?bacheca=0">
+                   </c:if>
+                   <c:if test ="${visit_user != null}"> 
+                    <form method="post" action="ConfirmPage.jsp?bacheca=${visit_user}">
+                    </c:if>
+                        <div><label for="textPost" id="prova">A cosa stai pensando</label>
                               <textarea name="textPost" id="textPost"></textarea>
-                              <div><input type="file" id="load" name="load"></div>
+                             <div><input type="file" id="load" name="load"></div>
                         </div>
                         <input type="submit">                        
                     </form>
