@@ -7,19 +7,28 @@ package amm.nerdbook.Classi;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Luigi Serreli
  */
-public class GroupsFactory {
 
-   
+public class GroupsFactory {
+    private static GroupsFactory singleton;
+    public static GroupsFactory getInstance() {
+        if (singleton == null) {
+            singleton = new GroupsFactory();
+        }
+        return singleton;
+    }
+   private String connectionString;
    private ArrayList<Group> GroupList = new ArrayList<>();
-    public GroupsFactory(){
-        Group g1 = new Group(1,"Gli sfigati","Descrizione di prova");
-        Group g2 = new Group(2,"Gruppo di studio","Per veri nerd");
-        this.GroupList.add(g1);
-        this.GroupList.add(g2);
+    public GroupsFactory(){}
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    public String getConnectionString(){
+	return this.connectionString;
     }
      /**
      * @return the GroupList

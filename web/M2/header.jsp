@@ -4,7 +4,7 @@
     Author     : Luigi Serreli
 --%>
 <%@page import="amm.nerdbook.Classi.User"%>
-<%@page import="amm.nerdbook.Classi.MakeUser"%>
+<%@page import="amm.nerdbook.Classi.UserFactory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
  <header>
@@ -28,7 +28,7 @@
                 int logged = 0;
            if(s!=null && s.getAttribute("log")!=null &&
               s.getAttribute("log").equals(true)){
-                MakeUser mu = MakeUser.getInstance();
+                UserFactory mu = UserFactory.getInstance();
                 int id = (Integer)s.getAttribute("user_id");
                 User u = mu.getUserById(id);
                 out.println("<img src=\""+u.getUrlImmagineProfilo()+"\" width=\"20\" height=\"20\" alt=\"ImmagineProfilo\"");

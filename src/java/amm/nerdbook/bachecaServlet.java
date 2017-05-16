@@ -5,7 +5,7 @@
  */
 package amm.nerdbook;
 
-import amm.nerdbook.Classi.MakeUser;
+import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.Post;
 import amm.nerdbook.Classi.PostFactory;
 import amm.nerdbook.Classi.User;
@@ -51,7 +51,7 @@ public class bachecaServlet extends HttpServlet {
             else
                 id=(int)s.getAttribute("user_id");
                PostFactory pf = PostFactory.getInstance();
-                 MakeUser mu = MakeUser.getInstance();
+                 UserFactory mu = UserFactory.getInstance();
                  List<Post> posts;
                  User u = mu.getUserById(id);
        //DEVO PASSARE ALLA PROSSSIMA JSP GLI OGGETTI DA STAMPARE

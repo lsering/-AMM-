@@ -5,10 +5,9 @@
  */
 package amm.nerdbook;
 
-import amm.nerdbook.Classi.MakeUser;
+import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class Profilo extends HttpServlet {
            s.getAttribute("log").equals(true)){
             //Caso utente autenticato
             int id=(int)s.getAttribute("user_id");
-            MakeUser mu = MakeUser.getInstance();
+            UserFactory mu = UserFactory.getInstance();
             User u = mu.getUserById(id);
             request.setAttribute("user", u);
             request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);

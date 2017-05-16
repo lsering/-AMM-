@@ -5,10 +5,14 @@
  */
 package amm.nerdbook;
 
-import amm.nerdbook.Classi.MakeUser;
+import amm.nerdbook.Classi.GroupsFactory;
+import amm.nerdbook.Classi.PostFactory;
+import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +22,27 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Tutor_IUM
+ * @author Luigi
  */
+@WebServlet(loadOnStartup = 0) 
 public class login extends HttpServlet {
-
+    private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
+    private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb;create=true";
+    public String path;
+    @Override
+   public void init(){
+       String dbConnection = "jdbc:derby://localhost:1527/ammdb";
+       try {
+           Class.forName(JDBC_DRIVER);
+       } catch (ClassNotFoundException ex) {
+           Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       UserFactory.getInstance().setConnectionString(dbConnection);
+       path = UserFactory.getInstance().getConnectionString();
+       PostFactory.getInstance().setConnectionString(dbConnection);
+       GroupsFactory.getInstance().setConnectionString(dbConnection); 
+   }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -41,7 +62,7 @@ public class login extends HttpServlet {
         if(sessione!=null && sessione.getAttribute("log")!=null &&
            sessione.getAttribute("log").equals(true))
         {
-            MakeUser mu = MakeUser.getInstance();
+            UserFactory mu = UserFactory.getInstance();
             User u = mu.getUserById((Integer)sessione.getAttribute("user_id"));
             request.setAttribute("user",u);
             if(u.getName()==null || u.getSurname()==null || u.getFrase()==null)
@@ -65,7 +86,7 @@ public class login extends HttpServlet {
             String username = request.getParameter("userN"); 
             String password = request.getParameter("pass");//pass e UserN devono corrispondere all'id degli input
             //Creo un'istanza di MakeUser
-            MakeUser mu = MakeUser.getInstance();
+            UserFactory mu = UserFactory.getInstance();
             if(username != null && password != null)
             {
                 int id = mu.getidByUsernameAndPassword(username, password);
@@ -85,6 +106,11 @@ public class login extends HttpServlet {
                 }
                 else
                 {
+                    if(id == 10)
+                    {
+                        PrintWriter out = response.getWriter();
+                        out.println("PORCODIO");
+                                }
                     //nel caso le credenziali siano errate
                     //mando alla jsp di login un flag tale che dia all'utente un messaggio di errore
                     request.setAttribute("invalidData",true);

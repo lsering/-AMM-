@@ -5,7 +5,7 @@
  */
 package amm.nerdbook;
 
-import amm.nerdbook.Classi.MakeUser;
+import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,7 +41,7 @@ public class sendData extends HttpServlet {
             String surname = request.getParameter("cognome");
             String frase = request.getParameter("presentazione");
             String pswconf = request.getParameter("confpassword");
-            MakeUser mu = MakeUser.getInstance();
+            UserFactory mu = UserFactory.getInstance();
             User u = mu.getUserById(id);
             //PER IL MOMENTO METTO IL CONTROLLO CHE NOME,COGNOME E FRASE SONO OBBLIGATORI
             //IN TEORIA PER IL MOMENTO FUNZIONANO SOLO QUELLI

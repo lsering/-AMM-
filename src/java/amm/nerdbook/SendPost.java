@@ -5,7 +5,7 @@
  */
 package amm.nerdbook;
 
-import amm.nerdbook.Classi.MakeUser;
+import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.Post;
 import amm.nerdbook.Classi.PostFactory;
 import java.io.IOException;
@@ -57,7 +57,7 @@ public class SendPost extends HttpServlet {
             else
               id_bacheca = id;
             Calendar c=Calendar.getInstance();
-            MakeUser mu = MakeUser.getInstance();
+            UserFactory mu = UserFactory.getInstance();
             String text = request.getParameter("textPost");
             //La procedura per inserire allegati(file o link) verrà
             //implementata in seguito

@@ -8,15 +8,17 @@ package amm.nerdbook.Classi;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
  * @author Luigi Serreli
  */
+
 public class PostFactory {
 
      //Pattern Design Singleton
     private static PostFactory singleton;
-
+    private String connectionString;
     public static PostFactory getInstance() {
         if (singleton == null) {
             singleton = new PostFactory();
@@ -26,21 +28,13 @@ public class PostFactory {
     
     private ArrayList<Post> postList = new ArrayList<>();
     public PostFactory()
-    {
-     MakeUser mu = new MakeUser();
-     Post p1 = new Post(1,mu.getUserById(1),"Questo è un post di prova","01/05/2017-22:00",1);
-     Attached att1 = new Attached(1,"img/mela.jpg");
-     Post p2 = new Post(2,mu.getUserById(2),"","02/03/2017-11:00",att1,2);
-     Attached att2 = new Attached(0,"https://it.wikipedia.org/wiki/Onda_gravitazionale");
-     Post p3 = new Post(3,mu.getUserById(3),"Avevo Ragione","01/06/2017-20:00",att2,3);
-     Post p4 = new Post(4,mu.getUserById(1),"Prova","02/05/2017-241242",2);
-     Post p5 = new Post(5,mu.getUserById(2),"Prova","03/10/2016-241242",1);
-     this.postList.add(p1);
-     this.postList.add(p2);
-     this.postList.add(p3);
-     this.postList.add(p4);
-     this.postList.add(p5);
-             }
+    {}
+    public void setConnectionString(String s){
+	this.connectionString = s;
+}
+public String getConnectionString(){
+	return this.connectionString;
+}
     public Post getPostByid(int id)
             
     {

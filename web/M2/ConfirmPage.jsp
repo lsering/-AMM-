@@ -4,7 +4,7 @@
     Author     : Luigi Serreli
 --%>
 <%@page import="amm.nerdbook.Classi.User"%>
-<%@page import="amm.nerdbook.Classi.MakeUser"%>
+<%@page import="amm.nerdbook.Classi.UserFactory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
                       String text = request.getParameter("textPost");
                       int idmittente = (Integer)sessione.getAttribute("user_id");
                       int idB=idmittente;
-                      MakeUser mu = MakeUser.getInstance();
+                      UserFactory mu = UserFactory.getInstance();
                     User u = mu.getUserById(idmittente);
                     mit = u.getName() + " " + u.getSurname();
                     dest = mit;
