@@ -35,6 +35,10 @@
                             </div>
                             <div>
                                 <input type="submit" value="Elimina il mio account" name="delete_User">
+                                    <c:if test="${Errordel == true}">
+                          <div class="InsData">Errore cancellazione</div>
+                          </c:if>
+                                     
                             </div>
                         </div>
                         <div id="dataprofile">

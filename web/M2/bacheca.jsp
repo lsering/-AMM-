@@ -63,7 +63,7 @@
                             <c:forEach var ="att" items="${post.att}"> <!--Itero gli allegati che potrebbero essere più di uno-->
                                <div class="allegati">
                                    <c:if test ="${att.type == 0}"> <!--SE E' un link -->
-                                      <a href="${att.content}" target="_blank" >LINK</a>
+                                      <a href="/${att.content}" target="_blank" >LINK</a>
                                    </c:if>
                                    <c:if test ="${att.type == 1}"> <!--SE E' un immagine -->
                                       <img src="${att.content}" alt="allegato" >

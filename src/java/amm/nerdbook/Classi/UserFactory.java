@@ -48,7 +48,7 @@ public String getConnectionString(){
             if(result.next()){
                 User currentUser = new User(result.getInt("id"),result.getString("username"),
                 result.getString("name"),result.getString("surname"),result.getString("email"),
-                result.getString("password"),result.getString("urlImmagineProfilo"));
+                result.getString("password"),result.getString("urlImmagineProfilo"),result.getString("frase"));
                 stmt.close();
                 conn.close();
                 return currentUser;
@@ -140,8 +140,39 @@ public String getConnectionString(){
         //Cancello prima i post
             conn = DriverManager.getConnection(this.getConnectionString(),"root","12345");
             conn.setAutoCommit(false);
-            String query = "DELETE FROM POST WHERE receiver = ?";
+            //Cancello la presenza di allegati nei post che cancellerò dato che sono collegati con una chiave esterna
+            //Devo trovare gli id dei post dell'utente
+            String query = "SELECT p.id as id_p " +
+                            "FROM post p, attached a,utente u " +
+                            "WHERE a.id_p = p.id " +
+                            "AND (u.id=p.sender OR u.id = p.receiver) " +
+                            "AND u.id=?";
             PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet result = stmt.executeQuery();
+            while(result.next())
+            {
+                //Per ogni id post trovato cancello l'allegato
+                 query = "DELETE FROM Attached WHERE id_p = ?";
+                 stmt = conn.prepareStatement(query);
+                 stmt.setInt(1,result.getInt("id_p"));
+                stmt.executeUpdate();
+            }
+            //Cancello i post
+            query = "DELETE FROM POST WHERE receiver = ? OR sender = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            stmt.setInt(2,id);
+            stmt.executeUpdate();
+            //Cancello gli amici
+            query = "DELETE FROM segue WHERE follower = ? OR followed = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            stmt.setInt(2,id);
+            stmt.executeUpdate();
+            //Cancello la presenza nel gruppo
+            query = "DELETE FROM Appartiene WHERE id_u = ?";
+            stmt = conn.prepareStatement(query);
             stmt.setInt(1,id);
             stmt.executeUpdate();
             query = "DELETE FROM Utente WHERE id = ?";
@@ -155,13 +186,12 @@ public String getConnectionString(){
         catch(SQLException e)
         {
             try{
+            value= false;
             conn.rollback();
                 }
             catch (SQLException sqle2)
             {
-                e.printStackTrace();
-                value= false;
-            }
+                e.printStackTrace();            }
         finally{
         conn.setAutoCommit(true);
     }

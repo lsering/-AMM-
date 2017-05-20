@@ -51,6 +51,12 @@ public class sendData extends HttpServlet {
                boolean del = uf.RemoveUser(id);
                if(del == true)
                    request.getRequestDispatcher("Login?log-out=1").forward(request, response);
+               else
+               {
+                   request.setAttribute("Errordel",true);
+                   request.getRequestDispatcher("profilo.html").forward(request, response);
+               }
+
                    }
             else
             {
