@@ -5,6 +5,11 @@
  */
 package amm.nerdbook.Classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -45,23 +50,46 @@ public class GroupsFactory {
     }
     public Group getGroupById(int id)
     {
-        for(Group g:this.GroupList)
-            if(g.getId()==id)
-                return g;
-        return null;
+        try{
+        //Connessione al db
+            Connection conn = DriverManager.getConnection(this.connectionString,"root","12345");
+            String query = "SELECT * FROM Gruppo "
+                            + "WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet result = stmt.executeQuery(); //Eseguo l'interrogazione
+            if(result.next()){
+                Group currentGroup = new Group(result.getInt("id"),result.getString("name"),
+                result.getString("description"));
+                stmt.close();
+                conn.close();
+                return currentGroup;
+            }
+            stmt.close();
+            conn.close();
+        }
+        catch(SQLException e){
+        e.printStackTrace();}
+                return null; //IF this method returns null the user does not exists
     }
     public ArrayList<Group> getGroupByUser(User u)
     {
         //Restituisce una lista di gruppi a cui l utente passato è iscritto
         ArrayList<Group> g=new ArrayList<>();
-        for(Group group:this.GroupList)
-        {
-            for(User user:group.getUserList())
-            {
-                if(user.getId()==u.getId())
-                    g.add(group);
+        try{
+            Connection conn = DriverManager.getConnection(this.connectionString,"root","12345");
+            String query = "SELECT * FROM Gruppo g,Appartiene a "
+                    + "WHERE a.id_u = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,u.getId());
+            ResultSet result = stmt.executeQuery();
+            while(result.next()){
+                Group CurrentGroup = new Group(result.getInt("id"),result.getString("name"),result.getString("description"));
+                g.add(CurrentGroup);
             }
         }
+        catch(SQLException e)
+        {}
         return g;
     }
 

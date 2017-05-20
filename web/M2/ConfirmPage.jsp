@@ -5,6 +5,7 @@
 --%>
 <%@page import="amm.nerdbook.Classi.User"%>
 <%@page import="amm.nerdbook.Classi.UserFactory"%>
+<%@page import="amm.nerdbook.Classi.GroupsFactory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,26 +26,39 @@
                 <!--CONTROLLO CHE L'UTENTE NON SIA GIA' LOGGATO. NEL CASO LO REINDIRIZZO DIRETTAMENTE-->
                 <%
                     HttpSession sessione = request.getSession();
-                    String mit, dest;
-                    int flag=0;
+                    String mit, dest="";
                     if(sessione==null && sessione.getAttribute("log")==null &&
               sessione.getAttribute("log").equals(false)){
-                    flag = 1;
                     }
-                      String idBacheca =request.getParameter("bacheca");
-                      String text = request.getParameter("textPost");
-                      int idmittente = (Integer)sessione.getAttribute("user_id");
-                      int idB=idmittente;
-                      UserFactory mu = UserFactory.getInstance();
+                    int flag=0;
+                    String text = request.getParameter("textPost");
+                    int idmittente = (Integer)sessione.getAttribute("user_id");
+                    UserFactory mu = UserFactory.getInstance();
                     User u = mu.getUserById(idmittente);
                     mit = u.getName() + " " + u.getSurname();
-                    dest = mit;
+                    String idBacheca ="";
+                     if(request.getParameter("bacheca") != null) //Caso utente
+                     {
+                      idBacheca =request.getParameter("bacheca");
+                      int idB=idmittente;
+                      dest = mit;
                     if(idBacheca != "0") //Quando idBacheca == 0 --> sta scrivendo nella sua bacheca
                     {
                         idB = Integer.parseInt(idBacheca);
                         u = mu.getUserById(idB);
                         try{dest = u.getName() + " " + u.getSurname();}catch(Exception exc){}
                     }
+                     }
+                     else
+                     {
+                         //CASO GRUPPO
+                         flag=1;
+                         idBacheca=request.getParameter("gruppo");
+                         GroupsFactory gf = GroupsFactory.getInstance();
+                         dest = gf.getGroupById(Integer.parseInt(idBacheca)).getGroupName();
+                     
+                     }
+
                  
                      %> 
                 <c:if test="${invalidData == true}">
@@ -54,7 +68,11 @@
                         <div id="send_post">
                             <div id="infoPost"><span class="infoPost">MITTENTE:</span><%=mit%><br>
                                   <span class="infoPost">DESTINATARIO:</span><%=dest%></div>
-                                  <form method="post" action="SendPost?visit_user=<%=idBacheca%>&textPost=<%=text%>" >
+                                  <% if (flag==0) { %> 
+                                    <form method="post" action="SendPost?visit_user=<%=idBacheca%>&textPost=<%=text%>" >
+                                  <% } else { %>
+                                     <form method="post" action="SendPost?visit_group=<%=idBacheca%>&textPost=<%=text%>" >
+                                   <% } %>
                                     <button type="submit">Invia</button>
                                   </form>
                                   <form method="post" action="Bacheca">

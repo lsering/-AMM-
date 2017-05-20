@@ -16,24 +16,27 @@
                         <li>Email:<br>${user.email}</li>
                     </ol>
                 </div>
-                          </c:if>
+     </c:if>
      <c:if test ="${page == 'bacheca'}">
                 <div id="favorite">
                     <h3>Utenti:</h3>
                     <ol>
                     <c:forEach var ="utente" items="${users}">
-                        <li><div class="icon"><a href="/AMM/M2/Bacheca?visit_user=${utente.id}">${utente.name} ${utente.surname}</a></div></li>
+                        <li><div class="icon"><a href="Bacheca?visit_user=${utente.id}">${utente.name} ${utente.surname}</a></div></li>
                      
                 </c:forEach>
 
                 </div>
-                          </c:if>
-                <div id="groups">
-                    <h3>Gruppi:</h3>
-                    <ol>
-                        <li><div class="icon">Gli sfigati</div></li>
-                        <li><div class="icon">Gruppo di studio</div></li>
-                    </ol>
-                </div>
+     </c:if>
+     <div id="groups">
+        <h3>Gruppi:</h3>
+         <ol>
+            <c:forEach var ="gruppo" items="${groups}">
+                <li><div class="icon"><a href="Bacheca?visit_group=${gruppo.id}">${gruppo.groupName}</a></div></li>
+            </c:forEach>
+         </ol>
+     </div>
                       
-            </div>
+</div>
+ 
+ 

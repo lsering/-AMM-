@@ -29,7 +29,6 @@ public class login extends HttpServlet {
     private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
     private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb;create=true";
-    public String path;
     @Override
    public void init(){
        String dbConnection = "jdbc:derby://localhost:1527/ammdb";
@@ -39,7 +38,6 @@ public class login extends HttpServlet {
            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
        }
        UserFactory.getInstance().setConnectionString(dbConnection);
-       path = UserFactory.getInstance().getConnectionString();
        PostFactory.getInstance().setConnectionString(dbConnection);
        GroupsFactory.getInstance().setConnectionString(dbConnection); 
    }
@@ -106,11 +104,6 @@ public class login extends HttpServlet {
                 }
                 else
                 {
-                    if(id == 10)
-                    {
-                        PrintWriter out = response.getWriter();
-                        out.println("PORCODIO");
-                                }
                     //nel caso le credenziali siano errate
                     //mando alla jsp di login un flag tale che dia all'utente un messaggio di errore
                     request.setAttribute("invalidData",true);

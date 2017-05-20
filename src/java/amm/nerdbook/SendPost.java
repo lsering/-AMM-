@@ -5,12 +5,16 @@
  */
 package amm.nerdbook;
 
+import amm.nerdbook.Classi.Attached;
 import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.Post;
 import amm.nerdbook.Classi.PostFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,51 +44,61 @@ public class SendPost extends HttpServlet {
         HttpSession sessione = request.getSession(false);
         if (sessione.getAttribute("log") != null &&
             sessione.getAttribute("log").equals(true)) {
-            int id=(int)sessione.getAttribute("user_id");
-            //Ottengo la data attuale
-            //trovo l'id della bacheca. Se visit_user è settato prendo quello senno lo prendo dalla sessione
-            String user = request.getParameter("visit_user");
-            int id_bacheca;
-            if(user != null && Integer.parseInt(user)!=0 )
-            {
-               
-                try{
-                    id_bacheca =Integer.parseInt(user); //POTREBBE DARE ERRORE CONVERSIONE
-                }catch(Exception exc){
-                    id_bacheca = id;
-                }
-            }
-            else
-              id_bacheca = id;
-            Calendar c=Calendar.getInstance();
-            UserFactory mu = UserFactory.getInstance();
+            int id=(int)sessione.getAttribute("user_id"); //Prelevo l'id del mittente
             String text = request.getParameter("textPost");
+            if(request.getParameter("visit_user")!=null)
+            {    //devo inviare ad una bacheca
+                int dest = Integer.parseInt(request.getParameter("visit_user"));
+                if(dest == 0) //Sto inviando nella bacheca dell'user connesso
+                    dest = id;
+                Date date = new Date();
+                UserFactory mu = UserFactory.getInstance();
             //La procedura per inserire allegati(file o link) verrà
             //implementata in seguito
-            PostFactory pf = PostFactory.getInstance();
+                PostFactory pf = PostFactory.getInstance();
+            ArrayList<Attached> a = new ArrayList<>(); //PER ORA NON INVIO ALLEGATI
             if(text != null)
             {
-                Post p = new Post(id,mu.getUserById(id),text,c.getTime().toString(),id_bacheca);
-                pf.addPost(p);
-                 request.setAttribute("user", mu.getUserById(id_bacheca));
-                 request.setAttribute("posts", pf.getPostById(id_bacheca));
+                Post p = new Post(id,mu.getUserById(id),text,new Timestamp(date.getTime()).toString(),a,dest);
+                //INSERISCO I DATI NEL DB RICHIAMANDO UN METODO DELLA CLASSE POSTFACTORY
+                pf.InsertData_bacheca(p);
+                 pf.addPost(p);
+                 request.setAttribute("user", mu.getUserById(dest));
+                 request.setAttribute("posts", pf.getPostById(dest));
                  request.setAttribute("users",mu.getUserList(id));
-                 request.setAttribute("visit_user", id_bacheca);
-                 String path ="Bacheca?visit_user="+id_bacheca;
+                 request.setAttribute("visit_user", dest);
+                 String path ="Bacheca?visit_user="+dest;
                 request.getRequestDispatcher(path).forward(request, response);  
                 
             }
-            else // SE NON C'E' NIENTE NEL FORM
+       }else
             {
-                request.setAttribute("user", mu.getUserById(id_bacheca));
-                 request.setAttribute("posts", pf.getPostById(id_bacheca));
-                 request.setAttribute("users",mu.getUserList(id));
-                 request.setAttribute("visit_user", user);
-                 //PER ORA NON FACCIO NIENTE
-                //request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);  
-            } 
-            
-       }
+                //NEL CASO CONTRARIO PER FORZA SARA' UN GRUPPO MA PER SICUREZZA METTO UN IF
+                if(request.getParameter("visit_group")!=null)
+                {
+                    int dest = Integer.parseInt(request.getParameter("visit_group"));
+                    Date date = new Date();
+                    UserFactory mu = UserFactory.getInstance();
+                    PostFactory pf = PostFactory.getInstance();
+                    ArrayList<Attached> a = new ArrayList<>(); //PER ORA NON INVIO ALLEGATI
+                    if(text != null)
+                     {
+                        Post p = new Post(id,mu.getUserById(id),text,a,dest);
+                        p.setData(new Timestamp(date.getTime()).toString());
+                        //INSERISCO I DATI NEL DB RICHIAMANDO UN METODO DELLA CLASSE POSTFACTORY
+                        pf.InsertData_groups(p);
+                        pf.addPost(p);
+                        request.setAttribute("user", mu.getUserById(dest));
+                        request.setAttribute("posts", pf.getPostById(dest));
+                        request.setAttribute("users",mu.getUserList(id));
+                        request.setAttribute("visit_group", dest);
+                        String path ="Bacheca?visit_group="+dest;
+                        request.getRequestDispatcher(path).forward(request, response);  
+                
+                      }
+                }
+            }
+      }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

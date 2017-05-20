@@ -5,16 +5,11 @@
  */
 package amm.nerdbook;
 
+import amm.nerdbook.Classi.GroupsFactory;
 import amm.nerdbook.Classi.UserFactory;
-import amm.nerdbook.Classi.Post;
 import amm.nerdbook.Classi.PostFactory;
-import amm.nerdbook.Classi.User;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,26 +38,43 @@ public class bachecaServlet extends HttpServlet {
         if(s!=null && s.getAttribute("log")!=null &&
            s.getAttribute("log").equals(true))
         {
-            //Controllo se visit_user ha un valore. Così reindirizzo alla bacheca da visitare
-            String user = request.getParameter("visit_user");
-            int id;
-            if(user !=null)
-                id = Integer.parseInt(user);
-            else
-                id=(int)s.getAttribute("user_id");
-               PostFactory pf = PostFactory.getInstance();
-                 UserFactory mu = UserFactory.getInstance();
-                 List<Post> posts;
-                 User u = mu.getUserById(id);
-       //DEVO PASSARE ALLA PROSSSIMA JSP GLI OGGETTI DA STAMPARE
-                 posts = pf.getPostById(id);
-                 request.setAttribute("user", u);
-                 request.setAttribute("visit_user", user);
-                 request.setAttribute("posts", posts);
-                 request.setAttribute("users",mu.getUserList(id));
-                 request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);
-            
-        }
+           UserFactory uf = UserFactory.getInstance();
+           GroupsFactory gf = GroupsFactory.getInstance();
+           PostFactory pf = PostFactory.getInstance();
+           if(request.getParameter("visit_user") != null)
+           {
+               //ricavo l'id dell'utente da visualizzare
+               int id=Integer.parseInt(request.getParameter("visit_user"));
+               request.setAttribute("user",uf.getUserById(id));
+               request.setAttribute("posts", pf.getPostById(id));
+               request.setAttribute("visit_user", id);
+
+           }else
+           {
+               if(request.getParameter("visit_group")!=null)//STO VISITANDO UN GRUPPO
+               {
+                   //devo passare il gruppo e i post
+                   int id=Integer.parseInt(request.getParameter("visit_group"));
+                   request.setAttribute("group",gf.getGroupById(id));
+                   request.setAttribute("posts", pf.getPostListByGroup(id));
+                   request.setAttribute("visit_group", id);
+                   
+               }
+               else //ALLORA STO VISITANDO LA BACHECA PERSONALE
+               {
+                   //Lancio i post dell'utente loggato
+                   int id = (Integer)(s.getAttribute("user_id"));
+                   request.setAttribute("user",uf.getUserById(id));
+                   request.setAttribute("posts",pf.getPostById(id));
+                   
+               }
+           }
+                          //Mando i followed dell'utente loggato
+               request.setAttribute("users",uf.getUserList((Integer)s.getAttribute("user_id")));
+                         //Mando i gruppi dell'utente loggato
+               request.setAttribute("groups",gf.getGroupByUser(uf.getUserById((Integer)s.getAttribute("user_id"))));
+             request.getRequestDispatcher("/M2/bacheca.jsp").forward(request, response);
+        }      
             else{ //UTENTE NON LOGGATO
                         request.setAttribute("ErrorLog",true);
                         request.getRequestDispatcher("Login").forward(request, response);

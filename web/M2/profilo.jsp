@@ -33,6 +33,9 @@
                             <div>
                                 <input type="file" name="imgPost" id="imgPost">
                             </div>
+                            <div>
+                                <input type="submit" value="Elimina il mio account" name="delete_User">
+                            </div>
                         </div>
                         <div id="dataprofile">
 
@@ -58,7 +61,7 @@
                                 <input type="password" id="cpwd" name="confpassword" />
                             </div>
                             <div id="send">
-                                <button type="submit">Invia</button>
+                                <button type="submit" name="UpdateData">Invia</button>
                             </div>
                       <c:if test="${ErrorData == true}">
                     <div id="InsData">Errore inserimento</div>

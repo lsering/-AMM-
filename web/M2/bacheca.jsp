@@ -22,15 +22,23 @@
         <div id="divBody">
             <jsp:include page="sidebar.jsp"/>
             <div id="content">
-                <div id="profileTitle"><h4>Bacheca di ${user.name}</h4></div>
+                <c:if test ="${visit_group ==null}">
+                    <div id="profileTitle"><h4>Bacheca di ${user.name}</h4></div>
+                </c:if>
+                <c:if test ="${visit_group != null}">
+                     <div id="profileTitle"><h4>Bacheca di ${group.groupName}</h4></div>
+                </c:if>
                 <div id="send_post">
-                   <c:if test ="${visit_user == null}"> 
-                       <form method="post" action="ConfirmPage.jsp?bacheca=0">
+                   <c:if test ="${visit_user == null && visit_group == null}"> 
+                       <form method="post" action="ConfirmPage.jsp?bacheca=0"><!--Devo mandare un post nella mia bacheca-->
                    </c:if>
-                   <c:if test ="${visit_user != null}"> 
+                   <c:if test ="${visit_user != null}">  <!--Devo mandare un post alla bacheca di un followed-->
                     <form method="post" action="ConfirmPage.jsp?bacheca=${visit_user}">
                     </c:if>
-                        <div><label for="textPost" id="prova">A cosa stai pensando</label>
+                   <c:if test ="${visit_group != null}">  <!--Devo mandare un post ad un gruppo-->
+                    <form method="post" action="ConfirmPage.jsp?gruppo=${visit_group}">
+                    </c:if>
+                        <div><label for="textPost" id="prova">A cosa stai pensando?</label>
                               <textarea name="textPost" id="textPost"></textarea>
                              <div><input type="file" id="load" name="load"></div>
                         </div>
@@ -52,17 +60,17 @@
                         </div>
                             <div>
                             <p>${post.content}</p>
-                            <c:if test ="${post.att.type != -1}">
+                            <c:forEach var ="att" items="${post.att}"> <!--Itero gli allegati che potrebbero essere più di uno-->
                                <div class="allegati">
-                                   <c:if test ="${post.att.type == 0}"> <!--SE E' un link -->
-                                      <a href="${post.att.content}" target="_blank" >LINK</a>
+                                   <c:if test ="${att.type == 0}"> <!--SE E' un link -->
+                                      <a href="${att.content}" target="_blank" >LINK</a>
                                    </c:if>
-                                   <c:if test ="${post.att.type == 1}"> <!--SE E' un immagine -->
-                                      <img src="${post.att.content}" alt="allegato" >
+                                   <c:if test ="${att.type == 1}"> <!--SE E' un immagine -->
+                                      <img src="${att.content}" alt="allegato" >
                                    </c:if>
                                </div>  
-                            </c:if>
-                        </div>
+                                 </c:forEach>
+                            </div>
                       </div>
                     </div>
                 </c:forEach>

@@ -107,12 +107,66 @@ public String getConnectionString(){
     }
     public ArrayList<User> getUserList(int id)
     {
-        ArrayList<User> arr = new ArrayList<>();
-        //RESTITUISCE LA LISTA DI UTENTI ESCLUDENDO L'UTENTE CON ID PASSATO COME PARAMETRO
-        for(User u:this.buffer)
-            if(u.getId()!=id)
-                arr.add(u);
-           return arr;     
+        ArrayList<User> arr = new ArrayList<>();	
+        try{	
+            Connection conn = DriverManager.getConnection(this.getConnectionString(),"root","12345");
+            String query = "SELECT * FROM Segue s, Utente u " +
+			    "WHERE s.Follower = ? AND " +
+			    "s.Followed = u.id";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet result = stmt.executeQuery();
+            while(result.next())
+	 {
+		User currentUser = new User(result.getInt("id"),result.getString("username"),
+                result.getString("name"),result.getString("surname"),result.getString("email"),
+                result.getString("password"),result.getString("urlImmagineProfilo"));
+		arr.add(currentUser);
+	 }
+            stmt.close();
+            conn.close();
+	}
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return arr;
     }
-    
+   public boolean RemoveUser(int id) throws SQLException
+   {
+       boolean value = true;
+       Connection conn=null;
+    try{
+        //Cancello prima i post
+            conn = DriverManager.getConnection(this.getConnectionString(),"root","12345");
+            conn.setAutoCommit(false);
+            String query = "DELETE FROM POST WHERE receiver = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            stmt.executeUpdate();
+            query = "DELETE FROM Utente WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            stmt.executeUpdate();
+            conn.commit();
+            stmt.close();
+            conn.close();
+        }
+        catch(SQLException e)
+        {
+            try{
+            conn.rollback();
+                }
+            catch (SQLException sqle2)
+            {
+                e.printStackTrace();
+                value= false;
+            }
+        finally{
+        conn.setAutoCommit(true);
+    }
+
+   }
+        return value;
+ }
 }

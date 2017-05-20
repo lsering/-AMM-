@@ -5,25 +5,21 @@
  */
 package amm.nerdbook.Classi;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Luigi Serreli
  */
 public class Post {
-
-   
-
-   
- 
-
     private int id;
     private User user; //Mittente
     private String content;
     private String data;
-    private Attached att;
+    private ArrayList<Attached> att;
     private int GroupId;
     private int id_user_bacheca;
-    public Post(int id,User user,String content,String data,Attached a,int id_user)
+    public Post(int id,User user,String content,String data,ArrayList<Attached> a,int id_user)
     {
         
         this.id = id;
@@ -33,22 +29,13 @@ public class Post {
         this.att = a;
         this.id_user_bacheca = id_user;
     }
-     public Post(int id,User user,String content,String data,int id_user)
-    {
-        this.id = id;
-        this.user = user;
-        this.content = content;
-        this.data = data;
-        this.att=new Attached(-1);
-        this.id_user_bacheca = id_user;
-    }
-     public Post(int id,User user,String content,Attached a,Group g)
+     public Post(int id,User user,String content,ArrayList<Attached> a,int id_g)
     {
         this.id = id;
         this.user = user;
         this.content = content;
         this.att = a;
-        this.GroupId = g.getId();
+        this.GroupId = id_g;
     }
     /**
      * @return the id
@@ -95,14 +82,14 @@ public class Post {
     /**
      * @return the att
      */
-    public Attached getAtt() {
+    public ArrayList<Attached> getAtt() {
         return att;
     }
 
     /**
      * @param att the att to set
      */
-    public void setAtt(Attached att) {
+    public void setAtt(ArrayList<Attached> att) {
         this.att = att;
     }
        /**
