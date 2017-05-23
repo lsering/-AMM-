@@ -54,8 +54,8 @@
                                 <input type="text" id="frase_p" name="presentazione" />
                             </div>
                             <div id="data">
-                                <label for="birth">Data:</label>
-                                <input type="text" id="birth" name="datanascita" />
+                                <label for="email">Email:</label>
+                                <input type="text" id="email" name="email" />
                             </div>
                             <div id="insertpass">
                                 <label for="pwd">Password:</label>

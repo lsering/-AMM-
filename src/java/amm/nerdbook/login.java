@@ -10,7 +10,6 @@ import amm.nerdbook.Classi.PostFactory;
 import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -31,7 +30,8 @@ public class login extends HttpServlet {
     private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb;create=true";
     @Override
    public void init(){
-       String dbConnection = "jdbc:derby://localhost:1527/ammdb";
+       //String dbConnection = "jdbc:derby://localhost:1527/ammdb";
+        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
        try {
            Class.forName(JDBC_DRIVER);
        } catch (ClassNotFoundException ex) {

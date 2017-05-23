@@ -5,13 +5,9 @@
  */
 package amm.nerdbook;
 
-import amm.nerdbook.Classi.PostFactory;
 import amm.nerdbook.Classi.UserFactory;
 import amm.nerdbook.Classi.User;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,8 +39,6 @@ public class sendData extends HttpServlet {
         if (sessione.getAttribute("log") != null &&
             sessione.getAttribute("log").equals(true)) {
             int id=(int)sessione.getAttribute("user_id");
-            //PER IL MOMENTO METTO IL CONTROLLO CHE NOME,COGNOME E FRASE SONO OBBLIGATORI
-            //IN TEORIA PER IL MOMENTO FUNZIONANO SOLO QUELLI
             if(request.getParameter("delete_User")!=null)
             { //delete User
                UserFactory uf = UserFactory.getInstance();
@@ -60,26 +54,35 @@ public class sendData extends HttpServlet {
                    }
             else
             {
-                 UserFactory mu = UserFactory.getInstance();
+                UserFactory mu = UserFactory.getInstance();
                 User u = mu.getUserById(id);
+                User recoveryUser = u;
                 String name = request.getParameter("nome"); 
                 String surname = request.getParameter("cognome");
                 String frase = request.getParameter("presentazione");
+                String email = request.getParameter("email");
+                String psw = request.getParameter("password");
                 String pswconf = request.getParameter("confpassword");
                 if(name != null && surname != null && frase!= null )
             {
-                
-                
                 u.setName(name);
                 u.setSurname(surname);
                 u.setFrase(frase);
-                 request.setAttribute("user", u);
-                 request.setAttribute("ErrorData",false);
-                 request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
+                u.setEmail(email);
+                if(psw.equals(pswconf))
+                {
+                mu.updateData(u);
+                request.setAttribute("user", u);
+                request.setAttribute("ErrorData",false);
+                }
+                else
+                {
+                    request.setAttribute("ErrorData",true);
+                    request.setAttribute("user", recoveryUser);
+                }
+                request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
             }
             }
-
-            //CON ERRORDATA TRUE POTRO' IMPLEMENTARE UN MODO PER RESTUIRE UN MESSAGGIO DI ERRORE
             
             
         }

@@ -199,4 +199,29 @@ public String getConnectionString(){
    }
         return value;
  }
+   public void updateData(User u) 
+   {
+       try{
+       Connection conn= DriverManager.getConnection(this.getConnectionString(),"root","12345");
+       String query = "Update utente "
+               + "set name = ?, surname=?, frase =?, "+
+               "email = ?, password = ? WHERE id = ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1,u.getName());
+           stmt.setString(2,u.getSurname());
+           stmt.setString(3,u.getFrase());
+           stmt.setString(4,u.getEmail());
+           stmt.setString(5,u.getPassword());
+          //  stmt.setString(7,u.getUrlImmagineProfilo());
+           stmt.setInt(6,u.getId());
+           stmt.executeUpdate();
+           stmt.close();
+           conn.close();
+       
+       }catch(SQLException e)
+       {
+           e.printStackTrace();
+       }
+       
+   }
 }
