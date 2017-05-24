@@ -100,4 +100,48 @@ SELECT *
 FROM Segue s,Utente u
 WHERE Follower = id_u 
 AND s.Follower = u.id
+
+
+3) Restituisce i post di una bacheca dato l'id e li ordina partendo dal più recente
+ SELECT * 
+ FROM post
+ WHERE receiver = id
+ ORDER BY data DESC 
+
+4) Restituisce gli allegati di un post
+SELECT *
+FROM Attached
+WHERE id_p = id
+
+5) Stampa i post di un gruppo e li ordina partendo dal più recente
+SELECT *
+FROM Post
+WHERE id_g = id
+ORDER BY data DESC
+6)
+INSERT INTO Post (id, content,sender,receiver,data)
+                    VALUES (default, ? , ? , ? , ? )
+7)Restituisce gli utenti seguiti da un utente con un id specifico
+SELECT * 
+FROM Segue s, Utente u
+WHERE s.Follower = ? AND
+s.Followed = u.id
+
+8)Seleziono tutti post con allegati di un utente specifico, quelli ricevuti ed inviati
+SELECT p.id as id_p
+FROM post p, attached a,utente u "
+WHERE a.id_p = p.id " +
+AND (u.id=p.sender OR u.id = p.receiver)
+AND u.id=?"
+
+9) Cancello l'allegato di un post specifico
+DELETE FROM Attached WHERE id_p = ?
+10)Cancello i post ricevuti e inviati 
+DELETE FROM POST WHERE receiver = ? OR sender = ?
+11)
+DELETE FROM segue WHERE follower = ? OR followed = ?
+14)Cancello l'utente dal gruppo
+DELETE FROM Appartiene WHERE id_u = ?
+13)Cancello l'utente
+DELETE FROM Utente WHERE id = ? 
 */

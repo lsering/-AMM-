@@ -60,22 +60,7 @@ public String getConnectionString(){
         e.printStackTrace();}
                 return null; //IF this method returns null the user does not exists
     }
-    public int getNumOfUsers()
-    {
-        return this.buffer.size();
-    }
-    public void DelUserById(int id)
-    {
-        int index=0;
-        for(User u:this.buffer)
-        {
-        if(u.getId() == id)
-        {
-            this.buffer.remove(index);
-        }
-                index++;
-            }     
-    }
+
     public  int getidByUsernameAndPassword(String us,String psw)
     {
         int id=-1;
@@ -140,7 +125,7 @@ public String getConnectionString(){
         //Cancello prima i post
             conn = DriverManager.getConnection(this.getConnectionString(),"root","12345");
             conn.setAutoCommit(false);
-            //Cancello la presenza di allegati nei post che cancellerò dato che sono collegati con una chiave esterna
+            //Cancello la presenza di allegati nei post che cancellerò dato che sono collegati con una chiave esterna.
             //Devo trovare gli id dei post dell'utente
             String query = "SELECT p.id as id_p " +
                             "FROM post p, attached a,utente u " +

@@ -33,13 +33,7 @@
                             <div>
                                 <input type="file" name="imgPost" id="imgPost">
                             </div>
-                            <div>
-                                <input type="submit" value="Elimina il mio account" name="delete_User">
-                                    <c:if test="${Errordel == true}">
-                          <div class="InsData">Errore cancellazione</div>
-                          </c:if>
-                                     
-                            </div>
+                            
                         </div>
                         <div id="dataprofile">
 
@@ -64,8 +58,14 @@
                                 <label for="cpwd">Conferma:</label>
                                 <input type="password" id="cpwd" name="confpassword" />
                             </div>
-                            <div id="send">
+                            <div>
                                 <button type="submit" name="UpdateData">Invia</button>
+                            </div>
+                            <div>
+                                <button type="submit" name="delete_User">Elimina il mio account </button>
+                                    <c:if test="${Errordel == true}">
+                          <div>Errore cancellazione</div>
+                          </c:if>          
                             </div>
                       <c:if test="${ErrorData == true}">
                     <div id="InsData">Errore inserimento</div>
@@ -73,6 +73,7 @@
                     <c:if test="${ErrorData == false}">
                     <div id="InsData">Dati inseriti con successo</div>
                     </c:if>
+                    
                         </div>
                     </form>
                 </div>

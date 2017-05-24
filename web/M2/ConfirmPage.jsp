@@ -69,12 +69,15 @@
                             <div id="infoPost"><span class="infoPost">MITTENTE:</span><%=mit%><br>
                                   <span class="infoPost">DESTINATARIO:</span><%=dest%></div>
                                   <% if (flag==0) { %> 
-                                    <form method="post" action="SendPost?visit_user=<%=idBacheca%>&textPost=<%=text%>" >
+                                  <form method="post" action="SendPost">
+                                        <input type="hidden" name="visit_user" value="<%=idBacheca%>">
+                                        <input type="hidden" name="textPost" value="<%=text%>">
                                   <% } else { %>
-                                     <form method="post" action="SendPost?visit_group=<%=idBacheca%>&textPost=<%=text%>" >
+                                     <form method="post" action="SendPost">
+                                         <input type="hidden" name="visit_group" value="<%=idBacheca%>">
+                                        <input type="hidden" name="textPost" value="<%=text%>">
                                    <% } %>
                                     <button type="submit">Invia</button>
-                                  </form>
                                   <form method="post" action="Bacheca">
                                     <button type="submit">Cancella</button>
                                   </form>

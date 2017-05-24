@@ -27,8 +27,7 @@
                 </c:forEach>
 
                 </div>
-     </c:if>
-     <div id="groups">
+                <div id="groups">
         <h3>Gruppi:</h3>
          <ol>
             <c:forEach var ="gruppo" items="${groups}">
@@ -36,6 +35,8 @@
             </c:forEach>
          </ol>
      </div>
+     </c:if>
+     
                       
 </div>
  

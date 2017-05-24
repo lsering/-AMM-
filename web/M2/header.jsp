@@ -17,7 +17,7 @@
                     <li <c:if test ="${page == 'bacheca'}">class="active"</c:if>><a href="Bacheca">Bacheca</a></li>
                     <li <c:if test ="${page == 'profilo'}">class="active"</c:if>>
                         <a href="profilo.html">MyProfile</a></li>
-                    <li><a href="descrizione.html">Descrizione</a></li>
+                    <li><a href="../">Descrizione</a></li>
                 </ol>  
             </nav>
             <div id="blocklogin">
