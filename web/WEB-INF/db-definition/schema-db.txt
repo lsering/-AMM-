@@ -1,17 +1,21 @@
-Entità:
-Utente(id,username,name,surname,frase,email,password,imgprofilo)
-Post(id,content,id_g,sender,receiver) --> id_g è chiave esterna della relazione gruppo(id), Relazione molti a uno
-Gruppo(id,nome,descrizione)
-Attached(id,type,path,id_p) -->id_p è chiave esterna della relazione post(id)
-
-
+Modello relazionale:
+Utente(id,username,name,surname,frase,email,password,imgprofilo)--> Chiave primaria:id
+Post(id,content,id_g,sender,receiver) -->Chiave primaria:id.  id_g è chiave esterna della relazione gruppo(id), Relazione molti a uno
+Gruppo(id,nome,descrizione) --> Chiave primaria:id
+Attached(id,type,path,id_p) -->Chiave primaria:id, id_p è chiave esterna della relazione post(id)
 Relazioni:
-Appartiene (Da relazione molti a molti tra Utente e Gruppo)
-Segue (Da relazione molti a molti tra Utente e Utente)
+Appartiene(id_u,id_g,data)
+Chiavi primarie:id_u,id_g
+Chiavi esterne: id_u da relazione utente(id) e id_g da relazione Gruppo(id)
+ (Questa tabella è il frutto è data dalla relazione molti a molti tra Utente e Gruppo)
+Segue(follower,followd)
+Chiavi primarie(tutte)
+Chiavi esterne: entrambi gli attributi si riferiscono a utente(id)
+(Questa tabella è il frutto è data dalla relazione molti a molti tra Utente e Utente)
 
 Schema E/R
 
 Utente <--segue--> Utente (relazione N a N con partecipazione parziale. Un utente può anche non seguire altri utenti)
 Utente <--pubblica--> post (relazione N a 1 con partecipazione parziale in utente. L'utente può non pubblicare mai un post)
 Utente <--Appartiene-->Gruppi (relazione N a N  con partecipazione parziale in utente)
-Post <--contiene--> Attached (Relazione N -- 1. Un post può contentere più di un allegato)
+Post <--contiene--> Attached (Relazione N a 1. Un post può contentere più di un allegato)
