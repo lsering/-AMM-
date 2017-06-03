@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package amm.nerdbook.Classi;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -41,7 +40,6 @@ public class GroupsFactory {
     public ArrayList<Group> getGroupList() {
         return GroupList;
     }
-
     /**
      * @param GroupList the GroupList to set
      */
@@ -89,7 +87,9 @@ public class GroupsFactory {
             }
         }
         catch(SQLException e)
-        {}
+        {
+            e.getStackTrace();
+        }
         return g;
     }
 

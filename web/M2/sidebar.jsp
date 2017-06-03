@@ -19,13 +19,16 @@
      </c:if>
      <c:if test ="${page == 'bacheca'}">
                 <div id="favorite">
-                    <h3>Utenti:</h3>
-                    <ol>
+                    <h3>Seguiti:</h3>
+                    <input class="searchUsers"  placeholder="Cerca amici" name="ricerca" id="searchYourFriend" >
+                        <button id="searchYourFriendByClick">Cerca</button>
+                   <div id="utenti"> <ol>
                     <c:forEach var ="utente" items="${users}">
                         <li><div class="icon"><a href="Bacheca?visit_user=${utente.id}">${utente.name} ${utente.surname}</a></div></li>
                      
                 </c:forEach>
-
+ 
+                        </div>          
                 </div>
                 <div id="groups">
         <h3>Gruppi:</h3>

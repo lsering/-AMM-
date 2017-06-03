@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Luigi Serreli
@@ -207,6 +208,36 @@ public String getConnectionString(){
        {
            e.printStackTrace();
        }
-       
+   }
+   public ArrayList<User> getFollowedListByName(int id,String name){
+       //Questo metodo rende gli utenti seguiti dall'utente con l'id passato per parametro con nome simile a name o surname
+       ArrayList<User> arr = new ArrayList<>();
+   try{
+       Connection conn= DriverManager.getConnection(this.getConnectionString(),"root","12345");
+       String query = "SELECT * FROM Segue s, Utente u " +
+			    "WHERE s.Follower = ? AND " +
+			    "s.Followed = u.id AND "+
+                            "(u.name like ? OR u.surname like ? OR "+
+                            " u.name || ' ' || u.surname like ?   )";
+       PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            stmt.setString(2, "%" + name + "%");
+            stmt.setString(3, "%" + name + "%");
+            stmt.setString(4, "%" + name + "%");
+            ResultSet result = stmt.executeQuery();
+            while(result.next())
+            {
+                User currentUser = new User(result.getInt("id"),result.getString("username"),
+                result.getString("name"),result.getString("surname"),result.getString("email"),
+                result.getString("password"),result.getString("urlImmagineProfilo"));
+		arr.add(currentUser);
+            }
+            stmt.close();
+            conn.close();
+   }catch(SQLException e)
+       {
+           e.printStackTrace();
+       }
+       return arr;
    }
 }

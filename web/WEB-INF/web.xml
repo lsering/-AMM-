@@ -16,6 +16,10 @@
         <servlet-name>SendPost</servlet-name>
         <servlet-class>amm.nerdbook.SendPost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Filter</servlet-name>
+        <servlet-class>amm.nerdbook.Filter</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/M2/Login</url-pattern>
@@ -48,12 +52,16 @@
         <servlet-name>SendPost</servlet-name>
         <url-pattern>/M2/SendPost</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Filter</servlet-name>
+        <url-pattern>/M2/filter.json</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-        <welcome-file-list>
+    <welcome-file-list>
         <welcome-file>M2/descrizione.html</welcome-file>
     </welcome-file-list>
 </web-app>
