@@ -1,16 +1,23 @@
+<%-- 
+    Document   : descrizione.jsp
+    Created on : Jun 8, 2017, 10:19:36 AM
+    Author     : Luigi Serreli
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NerdBook: Bacheca</title>
+        <title>NerdBooks: ConfermaPost</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Luigi Serreli">
         <meta name="keywords" content="Book">
-        <link rel="stylesheet" type="text/css" href="/AMM/M2/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="M2/style.css" media="screen">
     </head> 
     <body>
         <header>
-            <div id="headtitle">
+         <div id="headtitle">
                 <span id="navtitle">Nerdbook</span>
             </div>
             <nav>
@@ -18,7 +25,7 @@
                     <li><a href="M2/Login">Login</a></li>
                     <li><a href="M2/Bacheca">Bacheca</a></li>
                     <li><a href="M2/profilo.html">MyProfile</a></li>
-                    <li class="active"><a href="">Descrizione</a></li>
+                    <li><a href="" class="active">Descrizione</a></li>
                 </ol>  
             </nav>
             <div id="blocklogin">
@@ -30,16 +37,9 @@
         <div id="divBody">
             <div id="sidebar1">
                
-                <div id="groups">
-                    <h3>Gruppi:</h3>
-                    <ol>
-                        <li><div class="icon">Gli sfigati</div></li>
-                        <li><div class="icon">Gruppo di studio</div></li>
-                    </ol>
-                </div>
             </div>
             <div id="content">
-                <div id="desc_content">
+    <div id="desc_content">
                     <h2>Domende comuni</h2>
                     <h4>Sommario:</h4>
                     <ul>
@@ -58,3 +58,4 @@
         </div>
     </body>
 </html>
+

@@ -62,6 +62,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>M2/descrizione.html</welcome-file>
+        <welcome-file>M2/descrizione.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

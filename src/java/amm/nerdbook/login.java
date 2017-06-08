@@ -66,7 +66,7 @@ public class login extends HttpServlet {
             if(u.getName()==null || u.getSurname()==null || u.getFrase()==null)
             {
               request.setAttribute("page","profilo");
-              request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
+              request.getRequestDispatcher("/Profilo").forward(request, response);
             }
                 
             else
