@@ -16,10 +16,13 @@ function stateSuccess(data){
     var i=0;
     for(var instance in data){
         $(userListPage).append(createElement(data[instance]));
+        document.getElementById("erroreRicerca").style.display = "none";
         i++;
     }
         if(i === 0)
-        alert("Utente non trovato");
+        {
+        document.getElementById("erroreRicerca").style.display = "block";
+    }
 
 }
 function stateFailure(data, state){

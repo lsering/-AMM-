@@ -27,9 +27,10 @@
                         <li><div class="icon"><a href="Bacheca?visit_user=${utente.id}">${utente.name} ${utente.surname}</a></div></li>
                      
                 </c:forEach>
- 
-                        </div>          
+                        </div> 
+               <div id="erroreRicerca">Nessun risultato</div>
                 </div>
+
                 <div id="groups">
         <h3>Gruppi:</h3>
          <ol>
