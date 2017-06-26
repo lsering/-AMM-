@@ -21,9 +21,8 @@
          <div id="divBody">
         <jsp:include page="sidebar.jsp"/>
          <div id="content">
-
                 <div id="contentidentity">
-                    <form method="post" action="sendData">
+                    <form method="post" action="profilo.html">
                         <div id="img">
                             <div>
                                 <label for="imgPost">
@@ -43,7 +42,6 @@
                             <div id="surname"><label for="cognome">Cognome:</label>
                                 <input type="text" id="cognome" name="cognome" />
                             </div>
-
                             <div id="presentation"><label for="frase_p">Frase:</label>
                                 <input type="text" id="frase_p" name="presentazione" />
                             </div>
@@ -59,10 +57,15 @@
                                 <input type="password" id="cpwd" name="confpassword" />
                             </div>
                             <div>
-                                <button type="submit" name="UpdateData">Invia</button>
+                                <input type="hidden" name="update" value="1">
+                                <button type="submit">Invia</button>
+                                
                             </div>
+                    </form>
+                                <form method="post" action="profilo.html">
                             <div>
-                                <button type="submit" name="delete_User">Elimina il mio account </button>
+                                <input type="hidden" name="delete" value="1">
+                                <button type="submit">Elimina il mio account </button>
                                     <c:if test="${Errordel == true}">
                           <div>Errore cancellazione</div>
                           </c:if>          

@@ -24,59 +24,31 @@
             <jsp:include page="sidebar.jsp"/>
             <div id="content">
                 <!--CONTROLLO CHE L'UTENTE NON SIA GIA' LOGGATO. NEL CASO LO REINDIRIZZO DIRETTAMENTE-->
-                <%
-                    HttpSession sessione = request.getSession();
-                    String mit, dest="";
-                    if(sessione==null && sessione.getAttribute("log")==null &&
-              sessione.getAttribute("log").equals(false)){
-                    }
-                    int flag=0;
-                    String text = request.getParameter("textPost");
-                    int idmittente = (Integer)sessione.getAttribute("user_id");
-                    UserFactory mu = UserFactory.getInstance();
-                    User u = mu.getUserById(idmittente);
-                    mit = u.getName() + " " + u.getSurname();
-                    String idBacheca ="";
-                     if(request.getParameter("bacheca") != null) //Caso utente
-                     {
-                      idBacheca =request.getParameter("bacheca");
-                      int idB=idmittente;
-                      dest = mit;
-                    if(idBacheca != "0") //Quando idBacheca == 0 --> sta scrivendo nella sua bacheca
-                    {
-                        idB = Integer.parseInt(idBacheca);
-                        u = mu.getUserById(idB);
-                        try{dest = u.getName() + " " + u.getSurname();}catch(Exception exc){}
-                    }
-                     }
-                     else
-                     {
-                         //CASO GRUPPO
-                         flag=1;
-                         idBacheca=request.getParameter("gruppo");
-                         GroupsFactory gf = GroupsFactory.getInstance();
-                         dest = gf.getGroupById(Integer.parseInt(idBacheca)).getGroupName();
-                     
-                     }
+                <c:if test ="${log == true}">
 
-                 
-                     %> 
+                
+                </c:if>
                 <c:if test="${invalidData == true}">
                     <div id="InvalidData">I dati inseriti non sono corretti</div>
                 </c:if>
                     <div>
                         <div id="send_post">
-                            <div id="infoPost"><span class="infoPost">MITTENTE:</span><%=mit%><br>
-                                  <span class="infoPost">DESTINATARIO:</span><%=dest%></div>
-                                  <% if (flag==0) { %> 
+                        
+                            <div id="infoPost">
+                                 <span class="infoPost">MITTENTE:</span>${mit.name}<br>
+                                 <c:if test="${is_bacheca == 1}">
+                                  <span class="infoPost">DESTINATARIO:</span>${dest.name}</div>
                                   <form method="post" action="SendPost">
-                                        <input type="hidden" name="visit_user" value="<%=idBacheca%>">
-                                        <input type="hidden" name="textPost" value="<%=text%>">
-                                  <% } else { %>
-                                     <form method="post" action="SendPost">
-                                         <input type="hidden" name="visit_group" value="<%=idBacheca%>">
-                                        <input type="hidden" name="textPost" value="<%=text%>">
-                                   <% } %>
+                                        <input type="hidden" name="visit_user" value="${dest.id}">
+                                        <input type="hidden" name="textPost" value="${testo}">
+                                 </c:if>
+                                 <c:if test="${is_bacheca ==0}">
+                                  <span class="infoPost">DESTINATARIO:</span>${dest.groupName}</div>
+                                  <form method="post" action="SendPost">
+                                         <input type="hidden" name="visit_group" value="${dest.id}">
+                                        <input type="hidden" name="textPost" value="${testo}">
+                                 </c:if>
+                    
                                     <button type="submit">Invia</button>
                                   <form method="post" action="Bacheca">
                                     <button type="submit">Cancella</button>

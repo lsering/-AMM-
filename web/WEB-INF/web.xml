@@ -9,16 +9,16 @@
         <servlet-class>amm.nerdbook.Profilo</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>sendData</servlet-name>
-        <servlet-class>amm.nerdbook.sendData</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SendPost</servlet-name>
         <servlet-class>amm.nerdbook.SendPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Filter</servlet-name>
         <servlet-class>amm.nerdbook.Filter</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadPost</servlet-name>
+        <servlet-class>amm.nerdbook.LoadPost</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -38,15 +38,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Profilo_Serv</servlet-name>
-        <url-pattern>/Profilo</url-pattern>
+        <url-pattern>/M2/Profilo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Profilo_Serv</servlet-name>
         <url-pattern>/M2/profilo.html</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>sendData</servlet-name>
-        <url-pattern>/M2/sendData</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SendPost</servlet-name>
@@ -55,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>
         <url-pattern>/M2/filter.json</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadPost</servlet-name>
+        <url-pattern>/M2/LoadPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

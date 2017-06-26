@@ -285,15 +285,16 @@ button{
     }
     #divBody{
         border-right:4px solid white;
+        display:block;
     }
     header{
         display:block;
     }
     #sidebar1{
-        width:35%;  
+        width:100%; 
     }
     #content{
-        width:65%;
+        width:100%;
     }
     .allegati img{
         max-width: 70%;
@@ -327,6 +328,7 @@ button{
         width:100%;
         border-left:2px solid white;
         border-top:0px;
+        border-bottom: 2px solid white;
     }
     #send_post label{
     margin-left:85px;

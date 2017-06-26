@@ -31,7 +31,7 @@ public class login extends HttpServlet {
     @Override
    public void init(){
        //String dbConnection = "jdbc:derby://localhost:1527/ammdb";
-        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+       String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
        try {
            Class.forName(JDBC_DRIVER);
        } catch (ClassNotFoundException ex) {
@@ -66,7 +66,7 @@ public class login extends HttpServlet {
             if(u.getName()==null || u.getSurname()==null || u.getFrase()==null)
             {
               request.setAttribute("page","profilo");
-              request.getRequestDispatcher("/Profilo").forward(request, response);
+              request.getRequestDispatcher("profilo.html").forward(request, response);
             }
                 
             else
@@ -98,6 +98,7 @@ public class login extends HttpServlet {
                     sessione.setAttribute("user_id", id);
                     //Passo alla prossima jsp (profilo) l'oggetto user
                     request.setAttribute("user", mu.getUserById(id));
+                    request.setAttribute("user_logged", mu.getUserById(id));
                     request.setAttribute("page","profilo");
                     request.getRequestDispatcher("/M2/profilo.jsp").forward(request, response);
                     return;

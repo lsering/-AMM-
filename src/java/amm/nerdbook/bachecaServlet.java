@@ -41,6 +41,8 @@ public class bachecaServlet extends HttpServlet {
            UserFactory uf = UserFactory.getInstance();
            GroupsFactory gf = GroupsFactory.getInstance();
            PostFactory pf = PostFactory.getInstance();
+           int id_current_user_logged = (Integer)s.getAttribute("user_id");
+           request.setAttribute("user_logged",uf.getUserById(id_current_user_logged));
            if(request.getParameter("visit_user") != null)
            {
                //ricavo l'id dell'utente da visualizzare

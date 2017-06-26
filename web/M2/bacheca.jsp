@@ -32,13 +32,13 @@
                 </c:if>
                 <div id="send_post">
                    <c:if test ="${visit_user == null && visit_group == null}"> 
-                       <form method="post" action="ConfirmPage.jsp?bacheca=0"><!--Devo mandare un post nella mia bacheca-->
+                       <form method="post" action="LoadPost?bacheca=0"><!--Devo mandare un post nella mia bacheca-->
                    </c:if>
                    <c:if test ="${visit_user != null}">  <!--Devo mandare un post alla bacheca di un followed-->
-                    <form method="post" action="ConfirmPage.jsp?bacheca=${visit_user}">
+                    <form method="post" action="LoadPost?bacheca=${visit_user}">
                     </c:if>
                    <c:if test ="${visit_group != null}">  <!--Devo mandare un post ad un gruppo-->
-                    <form method="post" action="ConfirmPage.jsp?gruppo=${visit_group}">
+                    <form method="post" action="LoadPost?gruppo=${visit_group}">
                     </c:if>
                         <div><label for="textPost" id="prova">A cosa stai pensando?</label>
                               <textarea name="textPost" id="textPost"></textarea>

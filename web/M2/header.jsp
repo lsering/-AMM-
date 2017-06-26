@@ -21,23 +21,16 @@
                 </ol>  
             </nav>
             <div id="blocklogin">
+            <c:if test ="${log == true}">
                 <div id="logoutblock">
-                <!--CONTROLLO SESSIONE-->
-                <%
-                HttpSession s = request.getSession(false);
-                int logged = 0;
-           if(s!=null && s.getAttribute("log")!=null &&
-              s.getAttribute("log").equals(true)){
-                UserFactory mu = UserFactory.getInstance();
-                int id = (Integer)s.getAttribute("user_id");
-                User u = mu.getUserById(id);
-                out.println("<img src=\""+u.getUrlImmagineProfilo()+"\" width=\"20\" height=\"20\" alt=\"ImmagineProfilo\"");
-               out.println("<h4>"+u.getName()+"</h4>");
-               out.println("<a href=\"Login?log-out=1\">Logout</a>");}
-                else
-           {
-               out.println("<span id=\"login\"><a href=\"login.jsp\">Utente non riconosciuto.<br>Esegui il Login</a></span>");
-}%>
+                    <img src="${user_logged.urlImmagineProfilo}" width="20" height="20" alt="ImmagineProfilo">
+                    <h4>${user_logged.name}</h4>
+                    <a href="Login?log-out=1">Logout</a>
                 </div>
+            </c:if>
+            <c:if test ="${log != true}">
+                <span id="login"><a href="login.jsp">Utente non riconosciuto.<br>Esegui il Login</a></span>
+            </c:if>
+                    
             </div>
         </header>
